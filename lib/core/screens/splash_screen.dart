@@ -6,7 +6,6 @@ import '../../config/routes/app_routes.dart';
 import '../../config/style/app_status_bar.dart';
 import '../../db_injection.dart';
 import '../data/local/shared_preferences_service.dart';
-import '../utils/notification/firebase_notification.dart' show FirebaseNotifications;
 import '../widgets/logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,12 +24,15 @@ class _SplashScreenState extends State<SplashScreen> {
     _loading();
   }
 
-  _loading()  {
- FirebaseNotifications.init();
+  _loading() {
+    //  FirebaseNotifications.init();
     Timer(const Duration(seconds: 3), () {
       if (sl<SharedPreferencesService>().token != null) {
         Navigator.pushNamedAndRemoveUntil(
-            context, AppRoute.layout, (_) => false);
+          context,
+          AppRoute.layout,
+          (_) => false,
+        );
       } else {
         Navigator.pushNamedAndRemoveUntil(context, AppRoute.auth, (_) => false);
       }
@@ -46,8 +48,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Logo()),
-    );
+    return const Scaffold(body: Center(child: Logo()));
   }
 }
