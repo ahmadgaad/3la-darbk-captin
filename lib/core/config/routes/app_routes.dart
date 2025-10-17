@@ -2,24 +2,24 @@ import 'package:ala_darbak_captain/features/setttings_info/presentation/pages/te
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/db_injection.dart';
-import '../../features/auth/presentation/pages/auth_screen.dart';
-import '../../features/auth/presentation/pages/forget_password_screen.dart';
-import '../../features/layout/presentation/manager/cubit.dart';
-import '../../features/notifications/presentation/manager/notifications_cubit/cubit.dart';
-import '../../features/orders/presentation/manager/cubit.dart';
-import '../../features/orders/presentation/pages/history_orders_screen.dart';
-import '../../features/profile/presentation/pages/change_password_screen.dart';
-import '../../features/profile/presentation/pages/edit_car_screen.dart';
-import '../../features/profile/presentation/pages/edit_profile_screen.dart';
-import '../../features/profits/manager/cubit.dart';
-import '../../features/setttings_info/presentation/pages/policy_screen.dart';
-import '../../features/trips/presentation/manager/trips/cubit.dart';
-import '../../features/trips/presentation/pages/create_trip_screen.dart';
-import '../../features/layout/presentation/pages/layout_screen.dart';
-import '../../features/order/presentation/pages/order_details_screen.dart';
-import '../../features/trips/presentation/pages/trip_details_screen.dart';
-import '../../features/trips/presentation/pages/trips_histpry_screen.dart';
+import '../../db_injection.dart';
+import '../../../features/auth/presentation/pages/auth_screen.dart';
+import '../../../features/auth/presentation/pages/forget_password_screen.dart';
+import '../../../features/layout/presentation/manager/cubit.dart';
+import '../../../features/notifications/presentation/manager/notifications_cubit/cubit.dart';
+import '../../../features/orders/presentation/manager/cubit.dart';
+import '../../../features/orders/presentation/pages/history_orders_screen.dart';
+import '../../../features/profile/presentation/pages/change_password_screen.dart';
+import '../../../features/profile/presentation/pages/edit_car_screen.dart';
+import '../../../features/profile/presentation/pages/edit_profile_screen.dart';
+import '../../../features/profits/manager/cubit.dart';
+import '../../../features/setttings_info/presentation/pages/policy_screen.dart';
+import '../../../features/trips/presentation/manager/trips/cubit.dart';
+import '../../../features/trips/presentation/pages/create_trip_screen.dart';
+import '../../../features/layout/presentation/pages/layout_screen.dart';
+import '../../../features/order/presentation/pages/order_details_screen.dart';
+import '../../../features/trips/presentation/pages/trip_details_screen.dart';
+import '../../../features/trips/presentation/pages/trips_histpry_screen.dart';
 
 class AppRoute {
   static const String auth = "/auth";

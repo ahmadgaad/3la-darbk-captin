@@ -1,215 +1,219 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class AppStrings {
-  static const String login = "تسجيل الدخول";
-  static const String signUp = "انشاء حساب";
-  static const String next = 'التالي';
-  static const String showOrders = 'عرض الشحنات';
-  static const String name = "الاسم";
-  static const String clientData = "بيانات العميل";
-  static const String noTrips = "لا توجد رحلات";
-  static const String status = "الحالة";
-  static const String noOrders = "لا توجد شحنات";
-  static const String tripNumberOrders = "شحنات رحلة رقم";
-  static const String details = "تفاصيل";
-  static const String confirm = 'تاكيد';
-  static const String filterBy = "تصفية حسب";
-  static const String notApproved = "مرفوضة";
-  static const String disApproved = "رفض الشحنه";
-  static const String approve = "قبول";
-  static const String sendCode = "ارسال الكود";
-  static const String passwordChanged = "تم تغيير كلمة المرور";
-  static const String start = "ابداء";
-  static const String cash = "كاش";
-  static const String pay = "دفع";
-  static const String notPaid = "( لم يتم الدفع )";
-  static const String paid = "( تم الدفع )";
-  static const String online = "اون لاين";
-  static const String imageCarRequired = "صورة السيارة مطلوبة";
-  static const String imageRequired = "الصورة الشخصيه مطلوبة";
-  static const String invalidCredentials =
-      "اسم المستخدم او كلمة المرور غير صحيحة";
-  static const String deletedSuccessfully = "تم الحذف بنجاح";
-  static const String oldPasswordUnvalid = "كلمة المرور القديمة غير صحيحة";
-  static const String userExist = "هذا الرقم مستخدم من قبل";
-  static const String userNotExist = "هذا الرقم غير مسجل";
-  static const String codeSent = "تم ارسال الكود";
-  static const String end = "انهاء";
-  static const String updatedSuccessfully = "تم التحديث بنجاح";
-  static const String carImage = "صورة السيارة";
-  static const String address = "العنوان";
-  static const String pleaseEnterAddress = "برجاء ادخال العنوان";
-  static const String registerSuccess = "تم التسجيل بنجاح";
-  static const String processesNumber = "عملية رقم";
-  static const String changeOrderPrice = "تغيير سعر الشحنه";
+  // Authentication
+  static String get login => 'login'.tr();
+  static String get signUp => 'signUp'.tr();
+  static String get next => 'next'.tr();
+  static String get showOrders => 'showOrders'.tr();
+  static String get name => 'name'.tr();
+  static String get clientData => 'clientData'.tr();
+  static String get noTrips => 'noTrips'.tr();
+  static String get status => 'status'.tr();
+  static String get noOrders => 'noOrders'.tr();
+  static String get tripNumberOrders => 'tripNumberOrders'.tr();
+  static String get details => 'details'.tr();
+  static String get confirm => 'confirm'.tr();
+  static String get filterBy => 'filterBy'.tr();
+  static String get notApproved => 'notApproved'.tr();
+  static String get disApproved => 'disApproved'.tr();
+  static String get approve => 'approve'.tr();
+  static String get sendCode => 'sendCode'.tr();
+  static String get passwordChanged => 'passwordChanged'.tr();
+  static String get start => 'start'.tr();
+  static String get cash => 'cash'.tr();
+  static String get pay => 'pay'.tr();
+  static String get notPaid => 'notPaid'.tr();
+  static String get paid => 'paid'.tr();
+  static String get online => 'online'.tr();
+  static String get imageCarRequired => 'imageCarRequired'.tr();
+  static String get imageRequired => 'imageRequired'.tr();
+  static String get invalidCredentials => 'invalidCredentials'.tr();
+  static String get deletedSuccessfully => 'deletedSuccessfully'.tr();
+  static String get oldPasswordUnvalid => 'oldPasswordUnvalid'.tr();
+  static String get userExist => 'userExist'.tr();
+  static String get userNotExist => 'userNotExist'.tr();
+  static String get codeSent => 'codeSent'.tr();
+  static String get end => 'end'.tr();
+  static String get updatedSuccessfully => 'updatedSuccessfully'.tr();
+  static String get carImage => 'carImage'.tr();
+  static String get address => 'address'.tr();
+  static String get pleaseEnterAddress => 'pleaseEnterAddress'.tr();
+  static String get registerSuccess => 'registerSuccess'.tr();
+  static String get processesNumber => 'processesNumber'.tr();
+  static String get changeOrderPrice => 'changeOrderPrice'.tr();
 
-  static const String pending = "في الانتظار";
-  static const String accepted = "تم الموافقه";
-  static const String picked = "تم الإستلام";
-  static const String delivered = "تم التوصيل";
-  static const String canceled = "تم الالغاء";
-  static const String doNotReceiveCode = 'لم تستلم الكود؟ اعادة الارسال بعد';
+  // Order Status
+  static String get pending => 'pending'.tr();
+  static String get accepted => 'accepted'.tr();
+  static String get picked => 'picked'.tr();
+  static String get delivered => 'delivered'.tr();
+  static String get canceled => 'canceled'.tr();
+  static String get doNotReceiveCode => 'doNotReceiveCode'.tr();
+  static String get pleaseEnterCode => 'pleaseEnterCode'.tr();
+  static String get invalidCode => 'invalidCode'.tr();
+  static String get orderNumber => 'orderNumber'.tr();
+  static String get tripNumber => 'tripNumber'.tr();
+  static String get appPolicy => 'appPolicy'.tr();
+  static String get deleteAccount => 'deleteAccount'.tr();
+  static String get createNewTrip => 'createNewTrip'.tr();
+  static String get createTrip => 'createTrip'.tr();
+  static String get logout => 'logout'.tr();
 
-  static const String pleaseEnterCode = 'برجاء ادخال الكود';
+  // Car Information
+  static String get carType => 'carType'.tr();
+  static String get pleaseEnterCarType => 'pleaseEnterCarType'.tr();
+  static String get manufactureYear => 'manufactureYear'.tr();
+  static String get pleaseEnterManufactureYear =>
+      'pleaseEnterManufactureYear'.tr();
+  static String get blateAlpha => 'blateAlpha'.tr();
+  static String get pleaseEnterBlateAlpha => 'pleaseEnterBlateAlpha'.tr();
+  static String get carModel => 'carModel'.tr();
+  static String get pleaseEnterCarModel => 'pleaseEnterCarModel'.tr();
+  static String get blateNumber => 'blateNumber'.tr();
+  static String get pleaseEnterBlateNumber => 'pleaseEnterBlateNumber'.tr();
+  static String get idNumber => 'idNumber'.tr();
+  static String get bankNumber => 'bankNumber'.tr();
+  static String get bankName => 'bankName'.tr();
 
-  static const String invalidCode = 'كود غير صالح';
-  static const String orderNumber = 'شحنة رقم';
-  static const String tripNumber = 'رحلة رقم';
-  static const String appPolicy = 'سياسة التطبيق';
-  static const String deleteAccount = 'حذف الحساب';
-  static const String createNewTrip = 'انشاء رحلة جديدة';
+  // Trip Management
+  static String get pickupLocation => 'pickupLocation'.tr();
+  static String get deliveryLocation => 'deliveryLocation'.tr();
+  static String get sortBy => 'sortBy'.tr();
+  static String get searchTripRoute => 'searchTripRoute'.tr();
+  static String get startCity => 'startCity'.tr();
+  static String get chooseTripLine => 'chooseTripLine'.tr();
+  static String get chooseTripTime => 'chooseTripTime'.tr();
+  static String get destenationCity => 'destenationCity'.tr();
 
-  static const String createTrip = 'انشاء مسار رحلة';
-  static const String logout = 'تسجيل الخروج';
-  static const String carType = "نوع السيارة";
-  static const String pleaseEnterCarType = "برجاء ادخال نوع السيارة";
-  static const String manufactureYear = "سنة الصنع";
-  static const String pleaseEnterManufactureYear = "برجاء ادخال سنة الصنع";
-  static const String blateAlpha = "اللوحة احرف";
-  static const String pleaseEnterBlateAlpha = "برجاء ادخال اللوحة احرف";
-  static const String carModel = "فئة السيارة";
-  static const String pleaseEnterCarModel = "برجاء ادخال فئة السيارة";
-  static const String blateNumber = "اللوحة ارقام";
-  static const String pleaseEnterBlateNumber = "برجاء ادخال اللوحة ارقام";
-  static const String idNumber = "رقم الهوية";
-  static const String bankNumber = "رقم البنك";
-  static const String bankName = "اسم البنك";
-  static const String pickupLocation = 'موقع الاستلام';
-  static const String deliveryLocation = 'موقع التوصيل';
-  static const String sortBy = 'الترتيب حسب :';
-  static const String searchTripRoute = 'ابحث عن مسار الرحلات';
-  static const String startCity = 'مدينة الأنطلاق';
-  static const String chooseTripLine = 'حدد مسار الرحلة';
-  static const String chooseTripTime = 'حدد الوقت لبدء الرحله';
-  static const String destenationCity = 'مدينة الوصول';
-  static const String profile2 = "ملف التعريف الشخصي";
-  static const String profile = "الملف الشخصي";
-  static const String myAccount = "حسابي";
-  static const String myCar = "سيارتي";
-  static const String areYouReady = "هل أنت مستعد الان لعمل رحلات؟";
-  static const String tripHistory = "تاريخ رحلاتي";
-  static const String changePassword = "تغيير كلمة السر";
-  static const String aboutApp = "عن تطبيق علي دربك";
-  static const String termsAndConditions = "الشروط و الاحكام";
-  static const String privacy = "سياسة الخصوصية";
-  static const String callSupport = "الاتصال بالدعم";
-  static const String myProfit = "عمولتي";
-  static const String activeTrips = "الرحلات المتاحة";
-  static const String orders = "الشحنات";
-  static const String notifications = "الاشعارات";
-  static const String payAppProfit = "دفع عمولة التطبيق";
-  static const String withDrawProfits = "سحب الأرباح";
-  static const String profitDetails = "تفاصيل الأرباح";
-  static const String profitHistory = "سجل العمليات";
-  static const String availiableOrders = "الشحنات المتاحة";
-  static const String birthDay = "تاريخ الميلاد";
-  static const String date = 'التاريخ';
-  static const String time = 'الوقت';
-  static const String licenseEndDate = 'تاريخ نهاية الرخصة';
+  // Profile
+  static String get profile2 => 'profile2'.tr();
+  static String get profile => 'profile'.tr();
+  static String get myAccount => 'myAccount'.tr();
+  static String get myCar => 'myCar'.tr();
+  static String get areYouReady => 'areYouReady'.tr();
+  static String get tripHistory => 'tripHistory'.tr();
+  static String get changePassword => 'changePassword'.tr();
+  static String get aboutApp => 'aboutApp'.tr();
+  static String get termsAndConditions => 'termsAndConditions'.tr();
+  static String get privacy => 'privacy'.tr();
+  static String get callSupport => 'callSupport'.tr();
+  static String get myProfit => 'myProfit'.tr();
+  static String get activeTrips => 'activeTrips'.tr();
+  static String get orders => 'orders'.tr();
+  static String get notifications => 'notifications'.tr();
+  static String get payAppProfit => 'payAppProfit'.tr();
+  static String get myNotificationsCount => 'myNotificationsCount'.tr();
+  static String get myNotifications => 'myNotifications'.tr();
+  static String get myNotificationsContent => 'myNotificationsContent'.tr();
+  // Form Validation
+  static String get pleaseEnterDate => 'pleaseEnterDate'.tr();
+  static String get pleaseEnterTime => 'pleaseEnterTime'.tr();
+  static String get dateNotValid => 'dateNotValid'.tr();
+  static String get blateAlphaNotValid => 'blateAlphaNotValid'.tr();
+  static String get blateNumberNotValid => 'blateNumberNotValid'.tr();
+  static String get enterTheCode => 'enterTheCode'.tr();
+  static String get acceptPrivacyPolicy => 'acceptPrivacyPolicy'.tr();
+  static String get confirmOrderAndSearch => 'confirmOrderAndSearch'.tr();
+  static String get cancel => 'cancel'.tr();
 
-  static const String pleaseEnterName = "برجاء ادخال الاسم رباعي";
-  static const String pleaseEnterBankName = "برجاء ادخال اسم البنك";
-  static const String pleaseEnterBankNumber = "برجاء ادخال رقم البنك";
+  // Navigation
+  static String get trips => 'trips'.tr();
+  static String get myOrders => 'myOrders'.tr();
+  static String get home => 'home'.tr();
+  static String get ordersHistory => 'ordersHistory'.tr();
+  static String get termsAndCondtions => 'termsAndCondtions'.tr();
+  static String get searchCurrentTrips => 'searchCurrentTrips'.tr();
+  static String get addOrder => 'addOrder'.tr();
+  static String get discoverTrips => 'discoverTrips'.tr();
+  static String get clearSelection => 'clearSelection'.tr();
+  static String get chooseDate => 'chooseDate'.tr();
+  static String get searchTripsDate => 'searchTripsDate'.tr();
+  static String get categries => 'categries'.tr();
+  static String get choosePickupAndDelivery => 'choosePickupAndDelivery'.tr();
+  static String get orderDescripetion => 'orderDescripetion'.tr();
+  static String get orderPrice => 'orderPrice'.tr();
+  static String get currency => 'currency'.tr();
 
-  static const String phoneNumber = "رقم الهاتف";
-  static const String pleaseEnterPhoneNumber = "برجاء ادخال رقم الهاتف";
-  static const String phoneNumberNotValid = "رقم الهاتف غير صالح";
-  static const String pleaseEnterIdNumber = "برجاء ادخال رقم الهوية";
-  static const String pleaseEnterOrderPrice = "برجاء ادخال تكلفة الشحنة";
-  static const String idNumberNotValid = "رقم الهوية غير صالح";
+  // Order Details
+  static String get orderSize => 'orderSize'.tr();
+  static String get payMethod => 'payMethod'.tr();
+  static String get small => 'small'.tr();
+  static String get medium => 'medium'.tr();
+  static String get larage => 'larage'.tr();
+  static String get smallOrdersBetween => 'smallOrdersBetween'.tr();
+  static String get mediumOrdersBetween => 'mediumOrdersBetween'.tr();
+  static String get largeOrdersBetween => 'largeOrdersBetween'.tr();
 
-  static const String password = "كلمة المرور";
-  static const String oldPassword = "كلمة المرور القديمة";
-  static const String pleaseEnterPassword = "برجاء ادخال كلمة المرور";
-  static const String passwordNotValid = "كلمة المرور غير صالحة";
-  static const String confirmPassword = "تاكيد كلمة المرور";
-  static const String passwordNotMatch = "كلمة المرور غير متطابقة";
-  static const String forgetPassword = "هل نسيت كلمة المرور؟";
+  // Commission
+  static String get percentCommission => 'percentCommission'.tr();
+  static String get currentCommission => 'currentCommission'.tr();
 
-  static const String pleaseEnterDate = 'برجاء ادخال التاريخ';
-  static const String pleaseEnterTime = 'برجاء ادخال الوقت';
+  // Loading States
+  static String get loadingTrips => 'loadingTrips'.tr();
+  static String get errorLoadingTrips => 'errorLoadingTrips'.tr();
+  static String get retry => 'retry'.tr();
+  static String get loadingOrders => 'loadingOrders'.tr();
+  static String get errorLoadingOrders => 'errorLoadingOrders'.tr();
+  static String get loadingProfits => 'loadingProfits'.tr();
+  static String get errorLoadingProfits => 'errorLoadingProfits'.tr();
+  static String get loadingNotifications => 'loadingNotifications'.tr();
+  static String get errorLoadingNotifications =>
+      'errorLoadingNotifications'.tr();
+  static String get noNotifications => 'noNotifications'.tr();
+  static String get totalEarnings => 'totalEarnings'.tr();
 
-  static const String dateNotValid = 'تاريخ غير صالح';
+  // Account Management
+  static String get deleteAccountTitle => 'deleteAccountTitle'.tr();
+  static String get deleteAccountContent => 'deleteAccountContent'.tr();
 
-  static const String blateAlphaNotValid = 'اللوحة احرف غير صالحة';
+  // Language
+  static String get language => 'language'.tr();
+  static String get english => 'english'.tr();
+  static String get arabic => 'arabic'.tr();
 
-  static const String blateNumberNotValid = 'اللوحة ارقام غير صالحة';
+  // Form Validation
+  static String get pleaseEnterPhoneNumber => 'pleaseEnterPhoneNumber'.tr();
+  static String get phoneNumberNotValid => 'phoneNumberNotValid'.tr();
+  static String get pleaseEnterPassword => 'pleaseEnterPassword'.tr();
+  static String get passwordNotValid => 'passwordNotValid'.tr();
+  static String get passwordNotMatch => 'passwordNotMatch'.tr();
+  static String get pleaseEnterName => 'pleaseEnterName'.tr();
+  static String get pleaseEnterBankName => 'pleaseEnterBankName'.tr();
+  static String get pleaseEnterBankNumber => 'pleaseEnterBankNumber'.tr();
+  static String get pleaseEnterIdNumber => 'pleaseEnterIdNumber'.tr();
+  static String get idNumberNotValid => 'idNumberNotValid'.tr();
+  static String get forgetPassword => 'forgetPassword'.tr();
+  static String get birthDay => 'birthDay'.tr();
+  static String get confirmPassword => 'confirmPassword'.tr();
+  static String get licenseEndDate => 'licenseEndDate'.tr();
+  static String get password => 'password'.tr();
+  static String get phoneNumber => 'phoneNumber'.tr();
 
-  static const String enterTheCode = "ادخال الرمز المرسل الي:";
+  // Order Management
+  static String get orderCategory => 'orderCategory'.tr();
+  static String get unitsNumber => 'unitsNumber'.tr();
+  static String get addtionalDetails => 'addtionalDetails'.tr();
+  static String get orderPicked => 'orderPicked'.tr();
+  static String get orderDelivered => 'orderDelivered'.tr();
+  static String get recipientInfo => 'recipientInfo'.tr();
+  static String get orderImages => 'orderImages'.tr();
+  static String get orderSent => 'orderSent'.tr();
+  static String get orderAccepted => 'orderAccepted'.tr();
+  static String get availiableOrders => 'availiableOrders'.tr();
 
-  static const String acceptPrivacyPolicy = "قبول الشروط والأحكام";
+  // Profile Management
+  static String get oldPassword => 'oldPassword'.tr();
 
-  static const String confirmOrderAndSearch = 'تأكيد الطلب والبحث عن سائق';
-  static const String cancel = 'الغاء';
+  // Profit Management
+  static String get totalOrders => 'totalOrders'.tr();
+  static String get totalCashOrders => 'totalCashOrders'.tr();
+  static String get totalCreditOrders => 'totalCreditOrders'.tr();
+  static String get appCommission => 'appCommission'.tr();
+  static String get currentDues => 'currentDues'.tr();
+  static String get withDrawProfits => 'withDrawProfits'.tr();
 
-  static const String trips = 'الرحلات';
-  static const String myOrders = 'شحناتي';
-  static const String home = 'الرئيسية';
-  static const String ordersHistory = 'سجل الشحنات';
-  static const String termsAndCondtions = 'الشروط والأحكام';
-  static const String searchCurrentTrips = 'ابحث عن الرحلات الحالية';
-  static const String addOrder = 'اضافة شحنة';
-  static const String discoverTrips = 'استكشف رحلات اخري بالقرب منك';
-  static const String clearSelection = 'مسح الاختيارات';
-  static const String chooseDate = 'اختر تاريخ';
-  static const String searchTripsDate = 'ابحث عن موعد الرحلات المناسبة';
-  static const String categries = 'فئات الشحنة';
-  static const String choosePickupAndDelivery = 'اختر موقع الاستلام والتوصيل';
-  static const String orderDescripetion = 'مواصفات الشحنة';
-  static const String orderPrice = 'تكلفة الشحنة';
-  static const String currency = 'ر.س';
-
-  static const String orderSize = 'حجم الشحنه';
-  static const String payMethod = 'طريقة الدفع';
-  static const String small = 'صغيرة';
-  static const String medium = 'متوسطه';
-  static const String larage = 'كبيرة';
-  static const String smallOrdersBetween =
-      'الشحنات الصغيرة تتراوح بين 1 - 10 كجم';
-  static const String onDeliver = 'عند التسليم';
-  static const String credit = 'بطاقة ائتمان';
-  static const String choosePaymentWay = 'اختر طريقة الدفع المناسبة لك';
-  static const String recipientInfo = 'بيانات المستلم';
-  static const String addtionalDetails = 'تفاصيل اضافية';
-  static const String minimum3ImagesAndMax5Images =
-      'لاتقل عن 3 صور ولا تزيد عن 5';
-  static const String enterOrderImages = 'ادخل صور للشحنة';
-  static const String unitsNumber = 'عدد الوحدات ';
-
-  static const String unvalidUnit = 'عدد الوحدات غير صالح';
-  static const String orderSent = 'طلب الارسال';
-  static const String orderAccepted = 'تم القبول';
-  static const String orderPicked = 'استلام الشحنه ';
-  static const String orderDelivered = 'تم التوصيل';
-
-  static const String orderCategory = 'فئة الشحنة';
-
-  static const String orderImages = 'صور الشحنة';
-
-  static const String statusWaiting = "في الانتظار";
-  static const String statusApproved = "تم الموافقه";
-  static const String statusPickedUp = "تم الإستلام";
-  static const String statusDelivered = "تم التوصيل";
-  static const String statusCancelled = "تم الالغاء";
-
-  static const String totalCashOrders = 'إجمالي الشحنات المدفوعة نقدا';
-  static const String totalOrders = 'إجمالي الشحنات المكتمله';
-  static const String totalCreditOrders = 'إجمالي الشحنات المدفوعة بالائتمان';
-  static const String appCommission = 'إجمالي عمولة التطبيق';
-  static const String currentDues = 'مستحقاتك الحالية';
-  static const String percentCommission = 'نسبة العمولة';
-  static const String currentCommission = 'العموله الحالية';
-  static const String loadingTrips = 'جاري تحميل الرحلات...';
-  static const String errorLoadingTrips = 'حدث خطأ في تحميل الرحلات';
-  static const String retry = 'إعادة المحاولة';
-  static const String loadingOrders = 'جاري تحميل الشحنات...';
-  static const String errorLoadingOrders = 'حدث خطأ في تحميل الشحنات';
-  static const String loadingProfits = 'جاري تحميل بيانات الأرباح...';
-  static const String errorLoadingProfits = 'حدث خطأ في تحميل بيانات الأرباح';
-  static const String loadingNotifications = 'جاري تحميل الإشعارات...';
-  static const String errorLoadingNotifications = 'حدث خطأ في تحميل الإشعارات';
-  static const String noNotifications = 'لا توجد إشعارات';
-  static const String totalEarnings = 'إجمالي الارباح';
-
-  static const String deleteAccountTitle = 'حذف الحساب';
-  static const String deleteAccountContent =
-      'هل أنت متأكد أنك تريد حذف حسابك نهائيًا؟ سيتم مسح جميع بياناتك ,لا يمكن التراجع عن هذا الإجراء.';
+  // General
+  static String get date => 'date'.tr();
+  static String get time => 'time'.tr();
 }

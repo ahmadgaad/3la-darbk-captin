@@ -13,7 +13,7 @@ class AddressField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.addressValidator,
       keyboardType: TextInputType.streetAddress,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.address,
         prefixIcon: Icon(Icons.home, size: 25),
       ),

@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../config/routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/config/routes/app_routes.dart';
 import '../../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../../core/utils/heplers/image_picker.dart';
 import '../../../../../core/widgets/app_toaster.dart';
@@ -11,22 +13,28 @@ import 'state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepository _profileRepository;
+  static const String _languageKey = 'selected_language';
+  static const String _defaultLanguage = 'en';
 
-  ProfileCubit(this._profileRepository) : super(const ProfileState());
+  ProfileCubit(this._profileRepository) : super(const ProfileState()) {
+    _initializeLanguage();
+  }
 
-
-   getProfile() async {
+  getProfile() async {
     final result = await _profileRepository.getDriverData();
-    result.fold((l) {
-      emit(state.copyWith(success: true, currentUser: l,loading: false,));
-      _initFormField();
-    }, (r) {
-      if (r.message.contains('Unauthenticated')) {
-        logout();
-      }
+    result.fold(
+      (l) {
+        emit(state.copyWith(success: true, currentUser: l, loading: false));
+        _initFormField();
+      },
+      (r) {
+        if (r.message.contains('Unauthenticated')) {
+          logout();
+        }
 
-      emit(state.copyWith( success: false,loading: false));
-    });
+        emit(state.copyWith(success: false, loading: false));
+      },
+    );
   }
 
   void logout() async {
@@ -94,31 +102,33 @@ class ProfileCubit extends Cubit<ProfileState> {
     blateNumberController.text = state.currentUser?.platesNumber ?? "";
     blateAlphaController.text = state.currentUser?.platesString ?? "";
     manufactureYearController.text = state.currentUser?.yearManufacture ?? "";
-    image=null;
-    imageCar=null;
+    image = null;
+    imageCar = null;
   }
 
   void updateData() async {
     if (state.currentUser == null) return;
     if (!formKey.currentState!.validate()) return;
     emit(state.copyWith(loading: true));
-    final result = await _profileRepository.updateData(state.currentUser!
-        .copyWith(
-            imageFile: image,
-            name: nameController.text,
-            mobile: phoneController.text,
-            address: addressController.text,
-            dateOfBirth: birthdayController.text,
-            nationalNumber: idNumberController.text,
-            licenseExpiration: licenseEndDateController.text,
-            nameBank: bankNameController.text,
-            bankAccountNumber: bankNumberController.text,
-            typeCar: carTypeController.text,
-            categoryCar: carModelController.text,
-            yearManufacture: manufactureYearController.text,
-            platesNumber: blateNumberController.text,
-            platesString: blateAlphaController.text,
-            imageCarFile: imageCar));
+    final result = await _profileRepository.updateData(
+      state.currentUser!.copyWith(
+        imageFile: image,
+        name: nameController.text,
+        mobile: phoneController.text,
+        address: addressController.text,
+        dateOfBirth: birthdayController.text,
+        nationalNumber: idNumberController.text,
+        licenseExpiration: licenseEndDateController.text,
+        nameBank: bankNameController.text,
+        bankAccountNumber: bankNumberController.text,
+        typeCar: carTypeController.text,
+        categoryCar: carModelController.text,
+        yearManufacture: manufactureYearController.text,
+        platesNumber: blateNumberController.text,
+        platesString: blateAlphaController.text,
+        imageCarFile: imageCar,
+      ),
+    );
     result.fold((value) {
       AppToaster.show(AppStrings.updatedSuccessfully, isError: false);
       emit(state.copyWith(success: true, currentUser: value, loading: false));
@@ -129,9 +139,59 @@ class ProfileCubit extends Cubit<ProfileState> {
   changeAvailablilty() async {
     final workValid = state.currentUser?.workValid == 1 ? 0 : 1;
     final result = await _profileRepository.available(workValid);
-    result.fold((value) => emit(state.copyWith(
-        success: true,
-        currentUser: state.currentUser?.copyWith(workValid: workValid),
-      )), (r) => emit(state.copyWith(success: false)));
+    result.fold(
+      (value) => emit(
+        state.copyWith(
+          success: true,
+          currentUser: state.currentUser?.copyWith(workValid: workValid),
+        ),
+      ),
+      (r) => emit(state.copyWith(success: false)),
+    );
   }
+
+  // Language Management Methods
+  Future<void> _initializeLanguage() async {
+    final savedLanguage = await _getSavedLanguage();
+    emit(
+      state.copyWith(
+        currentLanguage: savedLanguage,
+        currentLocale: Locale(savedLanguage),
+      ),
+    );
+  }
+
+  Future<String> _getSavedLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_languageKey) ?? _defaultLanguage;
+  }
+
+  Future<void> _saveLanguage(String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_languageKey, languageCode);
+  }
+
+  Future<void> changeLanguage(String languageCode) async {
+    if (state.currentLanguage != languageCode) {
+      await _saveLanguage(languageCode);
+      emit(
+        state.copyWith(
+          currentLanguage: languageCode,
+          currentLocale: Locale(languageCode),
+        ),
+      );
+    }
+  }
+
+  Future<void> toggleLanguage() async {
+    final oppositeLanguage = state.currentLanguage == 'en' ? 'ar' : 'en';
+    await changeLanguage(oppositeLanguage);
+  }
+
+  // Getters for language state
+  bool get isArabic => state.currentLanguage == 'ar';
+  bool get isEnglish => state.currentLanguage == 'en';
+  String get currentLanguageDisplayName =>
+      state.currentLanguage == 'en' ? 'English' : 'العربية';
+  String get oppositeLanguage => state.currentLanguage == 'en' ? 'ar' : 'en';
 }

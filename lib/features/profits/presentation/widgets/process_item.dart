@@ -7,24 +7,24 @@ class ProcessItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         Align(
-            alignment: Alignment.topRight,
-            child: Row(
-              children: [
-                Text(AppStrings.processesNumber),
-                Text(": 561654654654"),
-              ],
-            )),
+          alignment: Alignment.topRight,
+          child: Row(
+            children: [
+              Text(AppStrings.processesNumber),
+              const Text(": 561654654654"),
+            ],
+          ),
+        ),
         Align(
-            alignment: Alignment.bottomLeft,
-            child: Row(mainAxisAlignment:MainAxisAlignment.end,
-              children: [
-                Text(AppStrings.date),
-                Text(": 20/10/2024"),
-              ],
-            )),
+          alignment: Alignment.bottomLeft,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text(AppStrings.date), const Text(": 20/10/2024")],
+          ),
+        ),
       ],
     );
   }

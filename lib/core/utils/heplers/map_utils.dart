@@ -7,7 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../config/style/app_color.dart';
+import '../../config/style/app_color.dart';
 
 class MapUtils {
     MapUtils._();

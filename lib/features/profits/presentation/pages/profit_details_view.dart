@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/style/app_color.dart';
-import '../../../../config/style/app_text_styles.dart';
+import '../../../../core/config/style/app_color.dart';
+import '../../../../core/config/style/app_text_styles.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../setttings_info/presentation/manager/cubit.dart';
 
@@ -35,7 +35,7 @@ class ProfitDetailsView extends StatelessWidget {
                 children: [
                   const CircularProgressIndicator.adaptive(),
                   16.verticalSpace,
-                  const Text(AppStrings.loadingProfits),
+                  Text(AppStrings.loadingProfits),
                 ],
               ),
             );
@@ -49,15 +49,15 @@ class ProfitDetailsView extends StatelessWidget {
                 children: [
                   const Icon(Icons.error_outline, size: 64, color: Colors.red),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     AppStrings.errorLoadingProfits,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () => cubit.getCommission(),
-                    child: const Text(AppStrings.retry),
+                    child: Text(AppStrings.retry),
                   ),
                 ],
               ),

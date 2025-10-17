@@ -14,10 +14,7 @@ class ActiveTripsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<TripsCubit>();
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(AppStrings.activeTrips),
-      ),
+      appBar: AppBar(centerTitle: true, title: Text(AppStrings.activeTrips)),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {
           return await cubit.getActiveTrips();
@@ -32,7 +29,7 @@ class ActiveTripsView extends StatelessWidget {
                   children: [
                     const CircularProgressIndicator.adaptive(),
                     16.verticalSpace,
-                    const Text(AppStrings.loadingTrips),
+                    Text(AppStrings.loadingTrips),
                   ],
                 ),
               );
@@ -50,15 +47,15 @@ class ActiveTripsView extends StatelessWidget {
                       color: Colors.red,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       AppStrings.errorLoadingTrips,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () => cubit.getActiveTrips(),
-                      child: const Text(AppStrings.retry),
+                      child: Text(AppStrings.retry),
                     ),
                   ],
                 ),
@@ -67,19 +64,19 @@ class ActiveTripsView extends StatelessWidget {
 
             // Handle empty state
             if (state.activeTrips.isEmpty) {
-              return const Center(
+              return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.directions_car_outlined,
                       size: 64,
                       color: Colors.grey,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       AppStrings.noTrips,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                   ],

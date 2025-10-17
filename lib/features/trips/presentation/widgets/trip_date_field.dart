@@ -13,16 +13,16 @@ class TripDateField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.dateValidator,
       keyboardType: TextInputType.datetime,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.date,
-        prefixIcon: Icon(Icons.date_range, size: 25),
+        prefixIcon: const Icon(Icons.date_range, size: 25),
       ),
       readOnly: true,
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
-          firstDate:DateTime.now(),
+          firstDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 365)),
         );
         if (pickedDate != null) {

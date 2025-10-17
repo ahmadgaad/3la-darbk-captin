@@ -13,7 +13,7 @@ class BirthdayField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.dateValidator,
       keyboardType: TextInputType.datetime,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.birthDay,
         prefixIcon: Icon(Icons.date_range, size: 25),
       ),

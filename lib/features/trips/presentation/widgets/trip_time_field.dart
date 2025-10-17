@@ -13,13 +13,13 @@ class TripTimeField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.timeValidator,
       keyboardType: TextInputType.datetime,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.time,
-        prefixIcon: Icon(Icons.timer_outlined, size: 25),
+        prefixIcon: const Icon(Icons.timer_outlined, size: 25),
       ),
       readOnly: true,
       onTap: () async {
-     TimeOfDay? pickedTime = await showTimePicker(
+        TimeOfDay? pickedTime = await showTimePicker(
           context: context,
           initialTime: TimeOfDay.now(),
         );

@@ -13,7 +13,7 @@ class NameField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.nameValidator,
       keyboardType: TextInputType.name,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.name,
         prefixIcon: Icon(Icons.person, size: 25),
       ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../../../config/style/app_color.dart';
+
+import '../../../../core/config/routes/app_routes.dart';
+import '../../../../core/config/style/app_color.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../notifications/presentation/manager/notifications_cubit/cubit.dart';
 import '../../../notifications/presentation/manager/notifications_cubit/state.dart';
@@ -50,19 +51,20 @@ class LayoutScreen extends StatelessWidget {
                         NotificationsView(),
                       ][state.index],
               floatingActionButton:
-             
                   userVerfied && profileState.currentUser != null
-                      ? state.index==3 ?null:FloatingActionButton(
-                        onPressed: () async {
-                          final tripsCubit = context.read<TripsCubit>();
-                          await Navigator.pushNamed(
-                            context,
-                            AppRoute.createTrip,
-                          );
-                          tripsCubit.getActiveTrips();
-                        },
-                        child: const Icon(Icons.add),
-                      )
+                      ? state.index == 3
+                          ? null
+                          : FloatingActionButton(
+                            onPressed: () async {
+                              final tripsCubit = context.read<TripsCubit>();
+                              await Navigator.pushNamed(
+                                context,
+                                AppRoute.createTrip,
+                              );
+                              tripsCubit.getActiveTrips();
+                            },
+                            child: const Icon(Icons.add),
+                          )
                       : null,
               bottomNavigationBar: Container(
                 decoration: const BoxDecoration(
@@ -74,29 +76,29 @@ class LayoutScreen extends StatelessWidget {
                     context.read<LayoutCubit>().changeIndex(index);
                   },
                   items: [
-                    const BottomNavigationBarItem(
-                      icon: Padding(
+                    BottomNavigationBarItem(
+                      icon: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Icon(Icons.person),
                       ),
                       label: AppStrings.myAccount,
                     ),
-                    const BottomNavigationBarItem(
-                      icon: Padding(
+                    BottomNavigationBarItem(
+                      icon: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Icon(Icons.shopping_cart),
                       ),
                       label: AppStrings.orders,
                     ),
-                    const BottomNavigationBarItem(
-                      icon: Padding(
+                    BottomNavigationBarItem(
+                      icon: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Icon(FontAwesomeIcons.road),
                       ),
                       label: AppStrings.trips,
                     ),
-                    const BottomNavigationBarItem(
-                      icon: Padding(
+                    BottomNavigationBarItem(
+                      icon: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Icon(FontAwesomeIcons.circleDollarToSlot),
                       ),
@@ -111,7 +113,9 @@ class LayoutScreen extends StatelessWidget {
                           int
                         >(
                           selector: (state) {
-                            return state.notifications.where((e)=>e.isRead==0).length;
+                            return state.notifications
+                                .where((e) => e.isRead == 0)
+                                .length;
                           },
                           builder: (context, notificationsCount) {
                             return Badge.count(
