@@ -1,3 +1,4 @@
+import 'package:ala_darbak_captain/features/profile/presentation/manager/profile_cubit/state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,7 @@ class SimpleLanguageToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
-      builder: (context, profileState, child) {
+      builder: (context, ProfileState profileState) {
         return IconButton(
           onPressed: () => _toggleLanguage(context),
           icon: Icon(icon ?? Icons.language, color: color),
