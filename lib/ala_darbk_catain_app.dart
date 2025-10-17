@@ -11,6 +11,7 @@ import 'core/config/style/app_theme.dart';
 import 'core/db_injection.dart';
 import 'core/screens/splash_screen.dart';
 import 'features/profile/presentation/manager/profile_cubit/cubit.dart';
+import 'features/profile/presentation/manager/profile_cubit/state.dart';
 import 'features/trips/presentation/manager/cities/cubit.dart';
 
 class AlaDarbkCaptainApp extends StatelessWidget {
@@ -38,18 +39,22 @@ class AlaDarbkCaptainApp extends StatelessWidget {
                   lazy: false,
                 ),
               ],
-              child: MaterialApp(
-                title: 'علي دربك كابتن',
-                debugShowCheckedModeBanner: false,
-                theme: appTheme,
-                themeMode: ThemeMode.light,
-                color: AppColors.backGround,
-                home: const SplashScreen(),
-                navigatorKey: AppRoute.navigatorKey,
-                onGenerateRoute: AppRoute.generateRoute,
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
+              child: BlocBuilder<ProfileCubit, ProfileState>(
+                builder: (context, profileState) {
+                  return MaterialApp(
+                    title: 'علي دربك كابتن',
+                    debugShowCheckedModeBanner: false,
+                    theme: appTheme,
+                    themeMode: ThemeMode.light,
+                    color: AppColors.backGround,
+                    home: const SplashScreen(),
+                    navigatorKey: AppRoute.navigatorKey,
+                    onGenerateRoute: AppRoute.generateRoute,
+                    localizationsDelegates: context.localizationDelegates,
+                    supportedLocales: context.supportedLocales,
+                    locale: profileState.currentLocale,
+                  );
+                },
               ),
             ),
           ),

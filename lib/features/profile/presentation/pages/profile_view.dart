@@ -1,5 +1,4 @@
 import 'package:ala_darbak_captain/features/orders/presentation/manager/cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,42 +13,11 @@ import '../../../trips/presentation/manager/trips/cubit.dart';
 import '../manager/profile_cubit/cubit.dart';
 import '../widgets/avaliability.dart';
 import '../widgets/delete_account_dialog.dart';
+import '../widgets/language_toggle_widget.dart';
 import '../widgets/profile_details.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
-
-  void _showLanguageDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('language'.tr()),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: Text('english'.tr()),
-                leading: const Icon(Icons.language),
-                onTap: () {
-                  context.setLocale(const Locale('en'));
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                title: Text('arabic'.tr()),
-                leading: const Icon(Icons.language),
-                onTap: () {
-                  context.setLocale(const Locale('ar'));
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,19 +105,7 @@ class ProfileView extends StatelessWidget {
               leading: const Icon(Icons.support_agent),
               title: Text(AppStrings.callSupport),
             ),
-            ListTile(
-              onTap: () {
-                _showLanguageDialog(context);
-              },
-              leading: const Icon(Icons.language),
-              title: Text('language'.tr()),
-              trailing: Text(
-                context.locale.languageCode == 'en'
-                    ? 'english'.tr()
-                    : 'arabic'.tr(),
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ),
+            const LanguageToggleWidget(),
             ListTile(
               onTap: () {
                 context.read<ProfileCubit>().logout();

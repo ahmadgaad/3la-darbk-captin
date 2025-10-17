@@ -15,13 +15,14 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await DpInjection.init();
   AppStatusBar.setStatusBarStyle();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then(
     (value) => runApp(
       EasyLocalization(
-        startLocale: const Locale('ar'),
+        startLocale: const Locale('en'),
         supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
