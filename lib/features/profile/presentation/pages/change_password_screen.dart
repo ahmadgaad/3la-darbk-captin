@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/widgets/app_toaster.dart';
-import '../../../../db_injection.dart';
+import '../../../../core/db_injection.dart';
 import '../../../auth/presentation/widgets/confirm_password_field.dart';
 import '../../../auth/presentation/widgets/password_field.dart';
 import '../manager/change_password/cubit.dart';

@@ -1,4 +1,5 @@
 import 'package:ala_darbak_captain/features/profits/manager/cubit.dart';
+import 'package:ala_darbak_captain/features/profits/manager/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,53 +19,96 @@ class ProfitDetailsView extends StatelessWidget {
     final commission = cubit.state.commission;
     final percentCommission =
         settingCubit.state.settingsInfo?.percentCommission;
+
     return RefreshIndicator(
       onRefresh: () async {
         await cubit.getCommission();
         return;
       },
-      child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 1.5,
-        crossAxisSpacing: 16.w,
-        mainAxisSpacing: 16.h,
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        children: [
-          _buildStatCard(
-            AppStrings.totalOrders,
-            commission?.totalOrders ?? "0",
-            showCurrency: false,
-          ),
-          _buildStatCard(
-            AppStrings.totalCashOrders,
-            commission?.totalWithCash ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.totalCreditOrders,
-            commission?.totalWithOnline ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.appCommission,
-            commission?.totalCommission ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.totalEarnings,
-            commission?.totalprofit ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.currentCommission,
-            commission?.currentCommission ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.currentDues,
-            commission?.avaliablewithdrawprofit ?? "0",
-          ),
-          _buildStatCard(
-            AppStrings.percentCommission,
-            "$percentCommission%",
-            showCurrency: false,
-          ),
-        ],
+      child: BlocBuilder<CommissionCubit, CommissionState>(
+        builder: (context, state) {
+          // Handle loading state
+          if (state.loading) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator.adaptive(),
+                  16.verticalSpace,
+                  const Text(AppStrings.loadingProfits),
+                ],
+              ),
+            );
+          }
+
+          // Handle error state
+          if (state.error) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                  const SizedBox(height: 16),
+                  const Text(
+                    AppStrings.errorLoadingProfits,
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => cubit.getCommission(),
+                    child: const Text(AppStrings.retry),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          // Handle success state with data
+          return GridView.count(
+            crossAxisCount: 2,
+            childAspectRatio: 1.5,
+            crossAxisSpacing: 16.w,
+            mainAxisSpacing: 16.h,
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            children: [
+              _buildStatCard(
+                AppStrings.totalOrders,
+                commission?.totalOrders ?? "0",
+                showCurrency: false,
+              ),
+              _buildStatCard(
+                AppStrings.totalCashOrders,
+                commission?.totalWithCash ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.totalCreditOrders,
+                commission?.totalWithOnline ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.appCommission,
+                commission?.totalCommission ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.totalEarnings,
+                commission?.totalprofit ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.currentCommission,
+                commission?.currentCommission ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.currentDues,
+                commission?.avaliablewithdrawprofit ?? "0",
+              ),
+              _buildStatCard(
+                AppStrings.percentCommission,
+                "$percentCommission%",
+                showCurrency: false,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

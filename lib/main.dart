@@ -6,7 +6,7 @@ import 'app.dart';
 import 'blocobserve.dart';
 import 'config/localization/localization.dart';
 import 'config/style/app_status_bar.dart';
-import 'db_injection.dart';
+import 'core/db_injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

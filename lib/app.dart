@@ -9,7 +9,7 @@ import 'config/routes/app_routes.dart';
 import 'config/style/app_color.dart';
 import 'config/style/app_theme.dart';
 import 'core/screens/splash_screen.dart';
-import 'db_injection.dart';
+import 'core/db_injection.dart';
 import 'features/profile/presentation/manager/profile_cubit/cubit.dart';
 import 'features/trips/presentation/manager/cities/cubit.dart';
 

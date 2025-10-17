@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ala_darbak_captain/config/style/app_color.dart';
 import 'package:ala_darbak_captain/core/widgets/app_toaster.dart';
 import 'package:flutter/material.dart';
@@ -41,39 +39,54 @@ class ProfitsView extends StatelessWidget {
             child: Row(
               spacing: 15.w,
               children: [
-                if( (double.tryParse((commission?.currentCommission ?? "0" ))??0)!= 0)
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Payment.pay(context, num.tryParse( commission?.currentCommission ?? "0")).then((value) {
-                        if (value is bool) {
-                          if (value) {
-                            print("Payment Success");
-                            cubit.payCommission(commission?.currentCommission ?? "0");
-                            AppToaster.show("Payment Success", isError: false);
-                          } else {
-                            print("Payment Failed");
-                            AppToaster.show("Payment Failed");
+                if ((double.tryParse((commission?.currentCommission ?? "0")) ??
+                        0) !=
+                    0)
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Payment.pay(
+                          context,
+                          num.tryParse(commission?.currentCommission ?? "0"),
+                        ).then((value) {
+                          if (value is bool) {
+                            if (value) {
+                              print("Payment Success");
+                              cubit.payCommission(
+                                commission?.currentCommission ?? "0",
+                              );
+                              AppToaster.show(
+                                "Payment Success",
+                                isError: false,
+                              );
+                            } else {
+                              print("Payment Failed");
+                              AppToaster.show("Payment Failed");
+                            }
                           }
-                        }
-                      });
-                    },
-                    child: const Text(AppStrings.payAppProfit),
-                  ),
-                ),
-                if((double.tryParse((commission?.avaliablewithdrawprofit ?? "0"))??0) != 0)
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondary,
+                        });
+                      },
+                      child: const Text(AppStrings.payAppProfit),
                     ),
-                    onPressed: () {
-                            cubit.withDrawProfits((commission?.avaliablewithdrawprofit ?? "0"));
-
-                    },
-                    child: const Text(AppStrings.withDrawProfits),
                   ),
-                ),
+                if ((double.tryParse(
+                          (commission?.avaliablewithdrawprofit ?? "0"),
+                        ) ??
+                        0) !=
+                    0)
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.secondary,
+                      ),
+                      onPressed: () {
+                        cubit.withDrawProfits(
+                          (commission?.avaliablewithdrawprofit ?? "0"),
+                        );
+                      },
+                      child: const Text(AppStrings.withDrawProfits),
+                    ),
+                  ),
               ],
             ),
           ),

@@ -1,14 +1,16 @@
+import 'package:ala_darbak_captain/core/utils/heplers/regex_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../config/routes/app_routes.dart';
 import '../../../../config/style/app_text_styles.dart';
+import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/widgets/logo.dart';
 import '../manager/login_cubit/cubit.dart';
 import '../manager/login_cubit/state.dart';
 import '../widgets/password_field.dart';
 import '../widgets/phone_number_field.dart';
-import '../../../../core/utils/app_utils/app_strings.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -39,7 +41,17 @@ class LoginView extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                PhoneNumberField(controller: loginCubit.phoneController),
+                PhoneNumberField(
+                  controller: loginCubit.phoneController,
+                  validator: (phoneNumber) {
+                    if (phoneNumber == null || phoneNumber.isEmpty) {
+                      return "من فضلك أدخل رقم الجوال";
+                    } else if (!RegexHelper.isPhoneNumberValid(phoneNumber)) {
+                      return "من فضلك أدخل رقم جوال صحيح";
+                    }
+                    return null;
+                  },
+                ),
                 25.verticalSpace,
                 PasswordField(controller: loginCubit.passwordController),
                 10.verticalSpace,

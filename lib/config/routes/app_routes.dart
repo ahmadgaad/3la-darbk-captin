@@ -2,7 +2,7 @@ import 'package:ala_darbak_captain/features/setttings_info/presentation/pages/te
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../db_injection.dart';
+import '../../core/db_injection.dart';
 import '../../features/auth/presentation/pages/auth_screen.dart';
 import '../../features/auth/presentation/pages/forget_password_screen.dart';
 import '../../features/layout/presentation/manager/cubit.dart';
