@@ -14,7 +14,7 @@ class Avaliability extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return ListTile(
-          title: const Text(AppStrings.areYouReady),
+          title: Text(AppStrings.areYouReady),
           trailing: SizedBox(
             height: 30.h,
             child: FittedBox(

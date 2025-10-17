@@ -1,5 +1,5 @@
 
-import '../core/utils/app_utils/app_strings.dart';
+import '../utils/app_utils/app_strings.dart';
 const List<String> dates = [
   '14/02/1988',
   '23/06/1995',

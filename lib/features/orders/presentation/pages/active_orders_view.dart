@@ -15,7 +15,7 @@ class ActiveOrdersView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(AppStrings.availiableOrders),
+        title: Text(AppStrings.availiableOrders),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -31,7 +31,7 @@ class ActiveOrdersView extends StatelessWidget {
                   children: [
                     const CircularProgressIndicator.adaptive(),
                     16.verticalSpace,
-                    const Text(AppStrings.loadingOrders),
+                    Text(AppStrings.loadingOrders),
                   ],
                 ),
               );
@@ -49,16 +49,16 @@ class ActiveOrdersView extends StatelessWidget {
                       color: Colors.red,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       AppStrings.errorLoadingOrders,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed:
                           () => context.read<OrdersCubit>().getActiveOrders(),
-                      child: const Text(AppStrings.retry),
+                      child: Text(AppStrings.retry),
                     ),
                   ],
                 ),
@@ -67,19 +67,19 @@ class ActiveOrdersView extends StatelessWidget {
 
             // Handle empty state
             if (state.activeOrders.isEmpty) {
-              return const Center(
+              return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.local_shipping_outlined,
                       size: 64,
                       color: Colors.grey,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       AppStrings.noOrders,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                   ],

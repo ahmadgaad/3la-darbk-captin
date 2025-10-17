@@ -16,7 +16,7 @@ class IdNumberField extends StatelessWidget {
       validator: ValidationForm.idNumberValidator,
       inputFormatters: [LengthLimitingTextInputFormatter(10),],
       keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.idNumber,
         prefixIcon: Icon(FontAwesomeIcons.idCard, size: 25),
       ),

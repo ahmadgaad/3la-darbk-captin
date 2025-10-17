@@ -13,7 +13,7 @@ class BankNumberField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.bankNumberValidator,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.bankNumber,
         prefixIcon: Icon(Icons.credit_card, size: 25),
       ),

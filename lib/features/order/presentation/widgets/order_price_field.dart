@@ -13,14 +13,14 @@ class OrderPriceField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: ValidationForm.orderPriceValidator,
-     inputFormatters: [
+      inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         _CustomMinValueFormatter(minValue: 0), // Enforce minimum value
       ],
       keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.orderPrice,
-        prefixIcon: Icon(Icons.price_change, size: 25),
+        prefixIcon: const Icon(Icons.price_change, size: 25),
       ),
     );
   }

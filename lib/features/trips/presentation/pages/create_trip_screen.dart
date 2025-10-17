@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/style/app_text_styles.dart';
+import '../../../../core/config/style/app_text_styles.dart';
 import '../../../../core/db_injection.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../repositories/model/city_model.dart';
@@ -26,7 +26,7 @@ class CreateTripScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text(AppStrings.createNewTrip),
+              title: Text(AppStrings.createNewTrip),
             ),
             body: ListView(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 24.h),
@@ -54,7 +54,7 @@ class CreateTripScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                           )
-                          : const Text(AppStrings.createTrip),
+                          : Text(AppStrings.createTrip),
                 ),
               ),
             ),
@@ -80,7 +80,7 @@ class CreateTripScreen extends StatelessWidget {
           Text(AppStrings.chooseTripLine, style: AppTextStyle.font14black600),
           15.verticalSpace,
           DropdownButtonFormField<CityModel>(
-            hint: const Text(AppStrings.startCity),
+            hint: Text(AppStrings.startCity),
             items:
                 citiesState.cities
                     .map<DropdownMenuItem<CityModel>>(
@@ -97,7 +97,7 @@ class CreateTripScreen extends StatelessWidget {
           ),
           15.verticalSpace,
           DropdownButtonFormField<CityModel>(
-            hint: const Text(AppStrings.destenationCity),
+            hint: Text(AppStrings.destenationCity),
             items:
                 citiesState.cities
                     .map<DropdownMenuItem<CityModel>>(

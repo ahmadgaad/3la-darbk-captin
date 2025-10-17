@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../manager/profile_cubit/cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/app_utils/app_strings.dart';
+import '../manager/profile_cubit/cubit.dart';
 import '../manager/profile_cubit/state.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
@@ -11,11 +11,11 @@ class DeleteAccountDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text(AppStrings.deleteAccountTitle),
-      content: const Text(AppStrings.deleteAccountContent),
+      title: Text(AppStrings.deleteAccountTitle),
+      content: Text(AppStrings.deleteAccountContent),
       actions: <Widget>[
         TextButton(
-          child: const Text(AppStrings.cancel),
+          child: Text(AppStrings.cancel),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -27,11 +27,11 @@ class DeleteAccountDialog extends StatelessWidget {
             }
             return TextButton(
               onPressed: context.read<ProfileCubit>().delete,
-              child: const Text(AppStrings.confirm),
+              child: Text(AppStrings.confirm),
             );
           },
         ),
       ],
     );
   }
-} 
+}

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_overlay/loading_overlay.dart';
- import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/widgets/app_image_view.dart';
 import '../../../auth/presentation/widgets/blate_alpha_field.dart';
@@ -18,10 +19,7 @@ class EditCarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.myCar),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text(AppStrings.myCar), centerTitle: true),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           final cubit = context.read<ProfileCubit>();
@@ -46,12 +44,11 @@ class EditCarScreen extends StatelessWidget {
                           height: 80.h,
                           fit: BoxFit.cover,
                           foregroundDecoration: const BoxDecoration(
-                              color: Colors.black26, shape: BoxShape.circle),
+                            color: Colors.black26,
+                            shape: BoxShape.circle,
+                          ),
                         ),
-                        const Icon(
-                          Icons.camera_alt,
-                          color: Colors.white,
-                        )
+                        const Icon(Icons.camera_alt, color: Colors.white),
                       ],
                     ),
                   ),
@@ -65,18 +62,23 @@ class EditCarScreen extends StatelessWidget {
                     children: [
                       CarTypeField(controller: cubit.carTypeController),
                       ManufactureYearField(
-                          controller: cubit.manufactureYearController),
+                        controller: cubit.manufactureYearController,
+                      ),
                       CarModeField(controller: cubit.carModelController),
                       Row(
                         spacing: 15.w,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Flexible(
-                              child: BlateNumberField(
-                                  controller: cubit.blateNumberController)),
+                            child: BlateNumberField(
+                              controller: cubit.blateNumberController,
+                            ),
+                          ),
                           Flexible(
-                              child: BlateAlphaField(
-                                  controller: cubit.blateAlphaController)),
+                            child: BlateAlphaField(
+                              controller: cubit.blateAlphaController,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -87,7 +89,7 @@ class EditCarScreen extends StatelessWidget {
                   onPressed: () {
                     cubit.updateData();
                   },
-                  child: const Text(AppStrings.confirm),
+                  child: Text(AppStrings.confirm),
                 ),
               ],
             ),

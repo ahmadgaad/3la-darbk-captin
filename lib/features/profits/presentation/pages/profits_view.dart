@@ -1,10 +1,10 @@
-import 'package:ala_darbak_captain/config/style/app_color.dart';
+import 'package:ala_darbak_captain/core/config/style/app_color.dart';
 import 'package:ala_darbak_captain/core/widgets/app_toaster.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/style/app_theme.dart';
+import '../../../../core/config/style/app_theme.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/utils/payment/payment_dialog.dart';
 import '../../manager/cubit.dart';
@@ -24,7 +24,7 @@ class ProfitsView extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text(AppStrings.myProfit),
+            title: Text(AppStrings.myProfit),
             // bottom: const TabBar(
             //   tabs: [
             //     Tab(text: AppStrings.payAppProfit),
@@ -66,7 +66,7 @@ class ProfitsView extends StatelessWidget {
                           }
                         });
                       },
-                      child: const Text(AppStrings.payAppProfit),
+                      child: Text(AppStrings.payAppProfit),
                     ),
                   ),
                 if ((double.tryParse(
@@ -84,7 +84,7 @@ class ProfitsView extends StatelessWidget {
                           (commission?.avaliablewithdrawprofit ?? "0"),
                         );
                       },
-                      child: const Text(AppStrings.withDrawProfits),
+                      child: Text(AppStrings.withDrawProfits),
                     ),
                   ),
               ],

@@ -13,7 +13,7 @@ class BlateAlphaField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.blateAlphaValidator,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.blateAlpha,
         // prefixIcon: Icon(Icons.account_balance, size: 25),
       ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/routes/app_routes.dart';
-import '../../../../config/style/app_text_styles.dart';
+import '../../../../core/config/routes/app_routes.dart';
+import '../../../../core/config/style/app_text_styles.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/widgets/logo.dart';
 import '../manager/login_cubit/cubit.dart';
@@ -45,9 +45,9 @@ class LoginView extends StatelessWidget {
                   controller: loginCubit.phoneController,
                   validator: (phoneNumber) {
                     if (phoneNumber == null || phoneNumber.isEmpty) {
-                      return "من فضلك أدخل رقم الجوال";
+                      return AppStrings.pleaseEnterPhoneNumber;
                     } else if (!RegexHelper.isPhoneNumberValid(phoneNumber)) {
-                      return "من فضلك أدخل رقم جوال صحيح";
+                      return AppStrings.phoneNumberNotValid;
                     }
                     return null;
                   },
@@ -71,7 +71,7 @@ class LoginView extends StatelessWidget {
               onPressed: () {
                 loginCubit.login();
               },
-              child: const Text(AppStrings.login),
+              child: Text(AppStrings.login),
             ),
           ],
         ),

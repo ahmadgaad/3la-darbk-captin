@@ -24,10 +24,7 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(AppStrings.notifications),
-      ),
+      appBar: AppBar(centerTitle: true, title: Text(AppStrings.notifications)),
       body: BlocBuilder<NotificationsCubit, NotificationsState>(
         builder: (context, state) {
           // Handle loading state
@@ -38,7 +35,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                 children: [
                   const CircularProgressIndicator.adaptive(),
                   16.verticalSpace,
-                  const Text(AppStrings.loadingNotifications),
+                  Text(AppStrings.loadingNotifications),
                 ],
               ),
             );
@@ -52,9 +49,9 @@ class _NotificationsViewState extends State<NotificationsView> {
                 children: [
                   const Icon(Icons.error_outline, size: 64, color: Colors.red),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     AppStrings.errorLoadingNotifications,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
@@ -64,7 +61,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                             context
                                 .read<NotificationsCubit>()
                                 .getNotifications(),
-                    child: const Text(AppStrings.retry),
+                    child: Text(AppStrings.retry),
                   ),
                 ],
               ),
@@ -73,19 +70,19 @@ class _NotificationsViewState extends State<NotificationsView> {
 
           // Handle empty state
           if (state.notifications.isEmpty) {
-            return const Center(
+            return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.notifications_none_outlined,
                     size: 64,
                     color: Colors.grey,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     AppStrings.noNotifications,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
                 ],

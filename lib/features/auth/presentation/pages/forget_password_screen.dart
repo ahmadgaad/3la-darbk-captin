@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../../../config/style/app_text_styles.dart';
+import '../../../../core/config/routes/app_routes.dart';
+import '../../../../core/config/style/app_text_styles.dart';
 import '../../../../core/widgets/logo.dart';
 import '../../../../core/widgets/timer_widget.dart';
 import '../../../../core/db_injection.dart';
@@ -24,7 +24,7 @@ class ForgetPasswordScreen extends StatelessWidget {
       create: (context) => ForgetPasswordCubit(sl()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(AppStrings.forgetPassword),
+          title: Text(AppStrings.forgetPassword),
         ),
         body: BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
           listener: (context, state) {
@@ -68,7 +68,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           30.verticalSpace,
           ElevatedButton(
             onPressed: cubit.checkUserAndSendCode,
-            child: const Text(AppStrings.sendCode),
+            child: Text(AppStrings.sendCode),
           ),
         ],
       );
@@ -87,7 +87,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           30.verticalSpace,
           ElevatedButton(
             onPressed: cubit.checkCode,
-            child: const Text(AppStrings.confirm),
+            child: Text(AppStrings.confirm),
           ),
           15.verticalSpace,
           Row(
@@ -124,7 +124,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           30.verticalSpace,
           ElevatedButton(
             onPressed: cubit.forgetPassword,
-            child: const Text(AppStrings.confirm),
+            child: Text(AppStrings.confirm),
           ),
         ],
       );

@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../config/app_config.dart';
+import 'config/app_config.dart';
 import '../features/auth/repositories/repositories.dart';
 import '../features/order/repositories/repositories.dart';
 import '../features/orders/repositories/repositories.dart';

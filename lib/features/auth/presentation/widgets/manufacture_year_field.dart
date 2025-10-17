@@ -13,7 +13,7 @@ class ManufactureYearField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.manufactureYearValidator,
       keyboardType: TextInputType.datetime,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.manufactureYear,
         prefixIcon: Icon(Icons.calendar_today, size: 25),
       ),

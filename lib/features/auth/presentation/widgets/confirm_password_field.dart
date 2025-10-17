@@ -16,7 +16,7 @@ class ConfirmPasswordField extends StatelessWidget {
             validator: (v)=>ValidationForm.confirmPasswordValidator(v,password.text),
         obscureText: true,
              keyboardType: TextInputType.visiblePassword,
-             decoration: const InputDecoration(
+             decoration: InputDecoration(
                 hintText: AppStrings.confirmPassword,
                      prefixIcon: Icon(Icons.lock, size: 25),
              ),

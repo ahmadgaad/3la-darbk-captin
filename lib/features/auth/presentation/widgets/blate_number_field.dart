@@ -12,7 +12,7 @@ class BlateNumberField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.blateNumberValidator,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.blateNumber,
         // prefixIcon: Icon(FontAwesomeIcons.idCard, size: 25),
       ),

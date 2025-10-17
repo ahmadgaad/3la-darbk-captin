@@ -1,108 +1,161 @@
 import 'package:ala_darbak_captain/features/orders/presentation/manager/cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../config/routes/app_routes.dart';
-import '../../../../config/style/app_color.dart';
- import '../../../../core/utils/app_utils/app_strings.dart';
+
+import '../../../../core/config/routes/app_routes.dart';
+import '../../../../core/config/style/app_color.dart';
+import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../setttings_info/presentation/manager/cubit.dart';
 import '../../../trips/presentation/manager/trips/cubit.dart';
 import '../manager/profile_cubit/cubit.dart';
 import '../widgets/avaliability.dart';
-import '../widgets/profile_details.dart';
 import '../widgets/delete_account_dialog.dart';
+import '../widgets/profile_details.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
+  void _showLanguageDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('language'.tr()),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('english'.tr()),
+                leading: const Icon(Icons.language),
+                onTap: () {
+                  context.setLocale(const Locale('en'));
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                title: Text('arabic'.tr()),
+                leading: const Icon(Icons.language),
+                onTap: () {
+                  context.setLocale(const Locale('ar'));
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userVerfied = context.watch<ProfileCubit>().state.currentUser?.status != 0;
+    final userVerfied =
+        context.watch<ProfileCubit>().state.currentUser?.status != 0;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(AppStrings.profile),
-      ),
+      appBar: AppBar(centerTitle: true, title: Text(AppStrings.profile)),
       body: RefreshIndicator(
-        onRefresh: () async{ 
+        onRefresh: () async {
           return await context.read<ProfileCubit>().getProfile();
-         },
+        },
         child: ListView(
           padding: EdgeInsets.only(top: 20.h, bottom: 80),
           children: [
             const ProfileDetails(),
             20.verticalSpace,
-            if(userVerfied)
-            const Avaliability(),
+            if (userVerfied) const Avaliability(),
             10.verticalSpace,
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.editProfileScreen);
               },
               leading: const Icon(Icons.person_pin_rounded),
-              title: const Text(AppStrings.profile2),
+              title: Text(AppStrings.profile2),
             ),
-             ListTile(
+            ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.editCarScreen);
               },
               leading: const Icon(FontAwesomeIcons.carRear),
-              title: const Text(AppStrings.myCar),
+              title: Text(AppStrings.myCar),
             ),
-            if(userVerfied)...{
-            ListTile(
-              onTap: () {
-                Navigator.pushNamed(context, AppRoute.tripsHistory, arguments: context.read<TripsCubit>());
-              },
-              leading: const Icon(Icons.history),
-              title: const Text(AppStrings.tripHistory),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pushNamed(context, AppRoute.ordersHistory,arguments: context.read<OrdersCubit>());
-              },
-              leading: const Icon(Icons.history),
-              title: const Text(AppStrings.ordersHistory),
-            ),},
+            if (userVerfied) ...{
+              ListTile(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoute.tripsHistory,
+                    arguments: context.read<TripsCubit>(),
+                  );
+                },
+                leading: const Icon(Icons.history),
+                title: Text(AppStrings.tripHistory),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRoute.ordersHistory,
+                    arguments: context.read<OrdersCubit>(),
+                  );
+                },
+                leading: const Icon(Icons.history),
+                title: Text(AppStrings.ordersHistory),
+              ),
+            },
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.changePassword);
               },
               leading: const Icon(Icons.lock_outline),
-              title: const Text(AppStrings.changePassword),
+              title: Text(AppStrings.changePassword),
             ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.termsAndConditions);
               },
               leading: const Icon(Icons.privacy_tip_outlined),
-              title: const Text(AppStrings.termsAndConditions),
+              title: Text(AppStrings.termsAndConditions),
             ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, AppRoute.policy);
               },
               leading: const Icon(Icons.policy_outlined),
-              title: const Text(AppStrings.privacy),
+              title: Text(AppStrings.privacy),
             ),
             ListTile(
-            onTap: () async {
-              final url =
-                  "tel:${context.read<SettingsInfoCubit>().state.settingsInfo?.callUs ?? "0"}";
-              if (await launchUrl(Uri.parse(url))) {}
-            },
-            leading: const Icon(Icons.support_agent),
-            title: const Text(AppStrings.callSupport),
-          ),
+              onTap: () async {
+                final url =
+                    "tel:${context.read<SettingsInfoCubit>().state.settingsInfo?.callUs ?? "0"}";
+                if (await launchUrl(Uri.parse(url))) {}
+              },
+              leading: const Icon(Icons.support_agent),
+              title: Text(AppStrings.callSupport),
+            ),
+            ListTile(
+              onTap: () {
+                _showLanguageDialog(context);
+              },
+              leading: const Icon(Icons.language),
+              title: Text('language'.tr()),
+              trailing: Text(
+                context.locale.languageCode == 'en'
+                    ? 'english'.tr()
+                    : 'arabic'.tr(),
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ),
             ListTile(
               onTap: () {
                 context.read<ProfileCubit>().logout();
               },
               leading: const Icon(Icons.logout),
-              title: const Text(AppStrings.logout),
+              title: Text(AppStrings.logout),
             ),
             ListTile(
               onTap: () {
@@ -117,9 +170,9 @@ class ProfileView extends StatelessWidget {
                 Icons.delete_forever_outlined,
                 color: AppColors.red,
               ),
-              title: const Text(
+              title: Text(
                 AppStrings.deleteAccount,
-                style: TextStyle(color: AppColors.red),
+                style: const TextStyle(color: AppColors.red),
               ),
             ),
           ],

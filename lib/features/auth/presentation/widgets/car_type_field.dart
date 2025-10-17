@@ -13,7 +13,7 @@ class CarTypeField extends StatelessWidget {
       controller: controller,
       validator: ValidationForm.carTypeValidator,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.carType,
         prefixIcon: Icon(Icons.time_to_leave, size: 25),
       ),

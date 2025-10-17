@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_overlay/loading_overlay.dart';
- import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/widgets/app_image_view.dart';
 import '../../../auth/presentation/widgets/bank_name_field.dart';
@@ -20,22 +21,19 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.profile2),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text(AppStrings.profile2), centerTitle: true),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           final cubit = context.read<ProfileCubit>();
           return LoadingOverlay(
             isLoading: state.loading,
-            
+
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               children: [
                 Center(
                   child: IconButton(
-                    onPressed:cubit.pickImage,
+                    onPressed: cubit.pickImage,
                     icon: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -47,12 +45,11 @@ class EditProfileScreen extends StatelessWidget {
                           height: 80.h,
                           fit: BoxFit.cover,
                           foregroundDecoration: const BoxDecoration(
-                              color: Colors.black26, shape: BoxShape.circle),
+                            color: Colors.black26,
+                            shape: BoxShape.circle,
+                          ),
                         ),
-                        const Icon(
-                          Icons.camera_alt,
-                          color: Colors.white,
-                        )
+                        const Icon(Icons.camera_alt, color: Colors.white),
                       ],
                     ),
                   ),
@@ -60,7 +57,7 @@ class EditProfileScreen extends StatelessWidget {
                 25.verticalSpace,
                 Form(
                   key: cubit.formKey,
-                
+
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     spacing: 10.h,
@@ -70,20 +67,21 @@ class EditProfileScreen extends StatelessWidget {
                       BirthdayField(controller: cubit.birthdayController),
                       IdNumberField(controller: cubit.idNumberController),
                       LicenseEndDateField(
-                          controller: cubit.licenseEndDateController),
+                        controller: cubit.licenseEndDateController,
+                      ),
                       BankNameField(controller: cubit.bankNameController),
                       BankNumberField(controller: cubit.bankNumberController),
                     ],
                   ),
                 ),
                 20.verticalSpace,
-                if(state.currentUser?.canEdit==1)
-                ElevatedButton(
-                  onPressed: () {
-                    cubit.updateData();
-                  },
-                  child: const Text(AppStrings.confirm),
-                ),
+                if (state.currentUser?.canEdit == 1)
+                  ElevatedButton(
+                    onPressed: () {
+                      cubit.updateData();
+                    },
+                    child: Text(AppStrings.confirm),
+                  ),
               ],
             ),
           );
