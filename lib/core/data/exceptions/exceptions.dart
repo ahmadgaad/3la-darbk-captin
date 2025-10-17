@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import '../../widgets/app_toaster.dart';
-import 'package:logger/logger.dart';
+
 
 class AppException implements Exception {
   final String message;
@@ -20,13 +20,8 @@ class ServerException extends AppException {
   ServerException(super.message, this.statusCode);
 }
 
-final logger = Logger();
 
  handleDioExceptions(DioException error, bool showErrorMessage) {
-  logger.e("Error IS: $error");
-  logger.e("Type IS: ${error.type}");
-  logger.e("Response IS: ${error.response}");
-
   switch (error.type) {
     case DioExceptionType.connectionTimeout:
       throw NetworkException("Connection timed out");

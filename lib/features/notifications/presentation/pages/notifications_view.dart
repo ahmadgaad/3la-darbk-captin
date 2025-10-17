@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../../../db_injection.dart';
+import '../../../../core/db_injection.dart';
 import '../manager/notifications_cubit/state.dart';
 import '../widgets/notification_item.dart';
 

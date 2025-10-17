@@ -6,7 +6,7 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../config/style/app_text_styles.dart';
 import '../../../../core/widgets/logo.dart';
 import '../../../../core/widgets/timer_widget.dart';
-import '../../../../db_injection.dart';
+import '../../../../core/db_injection.dart';
 import '../manager/forget_password_cubit/cubit.dart';
 import '../manager/forget_password_cubit/state.dart';
 import '../widgets/code_field.dart';

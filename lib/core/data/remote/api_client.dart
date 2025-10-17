@@ -2,20 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+
 import '../exceptions/exceptions.dart';
 import '../model/response_model.dart';
-import 'package:logger/logger.dart';
 
 class ApiClient {
   final Dio _dio;
-  final Logger _logger;
 
-  ApiClient({required Dio dio, required Logger logger})
-      : _dio = dio,
-        _logger = logger;
+  ApiClient({required Dio dio}) : _dio = dio;
 
   /// Helper function to set headers
-   void setHeaders({bool isFormData = false}) {
+  void setHeaders({bool isFormData = false}) {
     _dio.options.headers = {
       'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
       'Accept': 'application/json',
@@ -23,7 +20,7 @@ class ApiClient {
   }
 
   /// GET request
-   Future<ResponseModel> get({
+  Future<ResponseModel> get({
     required String endPoint,
     Map<String, dynamic>? query,
     Map<String, dynamic> data = const {},
@@ -39,7 +36,7 @@ class ApiClient {
       );
       return ResponseModel.fromJson(response.data);
     } on DioException catch (error) {
-      _logger.e("GET request failed: $error");
+      // _logger.e("GET request failed: $error");
       throw handleDioExceptions(error, showErrorMessage);
     } on SocketException {
       throw AppException('No Internet connection');
@@ -51,7 +48,7 @@ class ApiClient {
   }
 
   /// POST request
-   Future<ResponseModel> post({
+  Future<ResponseModel> post({
     required String endPoint,
     bool showErrorMessage = true,
     Map<String, dynamic> data = const {},
@@ -71,7 +68,7 @@ class ApiClient {
 
       return ResponseModel.fromJson(response.data);
     } on DioException catch (error) {
-      _logger.e("POST request failed: $error");
+      // _logger.e("POST request failed: $error");
       throw handleDioExceptions(error, showErrorMessage);
     } on SocketException {
       throw AppException('No Internet connection');
@@ -82,7 +79,7 @@ class ApiClient {
     }
   }
 
-   Future<ResponseModel> delete({
+  Future<ResponseModel> delete({
     required String endPoint,
     bool showErrorMessage = true,
     Map<String, dynamic> data = const {},
@@ -92,13 +89,15 @@ class ApiClient {
     try {
       setHeaders(isFormData: isFormData);
 
-      final response = await _dio.delete(endPoint,
-          data: isFormData ? FormData.fromMap(data) : jsonEncode(data),
-          queryParameters: query);
+      final response = await _dio.delete(
+        endPoint,
+        data: isFormData ? FormData.fromMap(data) : jsonEncode(data),
+        queryParameters: query,
+      );
 
       return ResponseModel.fromJson(response.data);
     } on DioException catch (error) {
-      _logger.e("POST request failed: $error");
+      // _logger.e("POST request failed: $error");
       throw handleDioExceptions(error, showErrorMessage);
     } on SocketException {
       throw AppException('No Internet connection');
