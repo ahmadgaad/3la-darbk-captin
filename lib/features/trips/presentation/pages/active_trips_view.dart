@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/style/app_text_styles.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../manager/trips/cubit.dart';
 import '../manager/trips/state.dart';
@@ -19,37 +18,99 @@ class ActiveTripsView extends StatelessWidget {
         centerTitle: true,
         title: const Text(AppStrings.activeTrips),
       ),
-      body: RefreshIndicator(
+      body: RefreshIndicator.adaptive(
         onRefresh: () async {
           return await cubit.getActiveTrips();
         },
         child: BlocBuilder<TripsCubit, TripsState>(
           builder: (context, state) {
+            // Handle loading state
+            if (state.activeTripsLoading) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator.adaptive(),
+                    16.verticalSpace,
+                    const Text(AppStrings.loadingTrips),
+                  ],
+                ),
+              );
+            }
+
+            // Handle error state
+            if (state.activeTripsError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      AppStrings.errorLoadingTrips,
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => cubit.getActiveTrips(),
+                      child: const Text(AppStrings.retry),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Handle empty state
+            if (state.activeTrips.isEmpty) {
+              return const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.directions_car_outlined,
+                      size: 64,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      AppStrings.noTrips,
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Handle success state with data
             return CustomScrollView(
               slivers: [
-                if (state.activeTrips.isEmpty)
-                  const SliverToBoxAdapter(child: Center(child: Text(AppStrings.noTrips)))
-                else ...{
-                  // SliverPadding(
-                  //     padding:
-                  //         EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-                  //     sliver:
-                  //         SliverToBoxAdapter(child: _buildFilters(context.read<TripsCubit>(), state))),
-
-                  SliverPadding(
-                    padding: EdgeInsets.only(
-                        left: 20.w, right: 20.w, top: 24.h, bottom: 80),
-                    sliver: SliverList.separated(
-                      itemBuilder: (BuildContext context, int index) =>
-                          TripItem(
-                        tripModel: state.activeTrips[index],
-                      ),
-                      separatorBuilder: (BuildContext context, int index) =>
-                          15.verticalSpace,
-                      itemCount: state.activeTrips.length,
-                    ),
-                  )
-                }
+                // SliverPadding(
+                //     padding:
+                //         EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+                //     sliver:
+                //         SliverToBoxAdapter(child: _buildFilters(context.read<TripsCubit>(), state))),
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    left: 20.w,
+                    right: 20.w,
+                    top: 24.h,
+                    bottom: 80,
+                  ),
+                  sliver: SliverList.separated(
+                    itemBuilder:
+                        (BuildContext context, int index) =>
+                            TripItem(tripModel: state.activeTrips[index]),
+                    separatorBuilder:
+                        (BuildContext context, int index) => 15.verticalSpace,
+                    itemCount: state.activeTrips.length,
+                  ),
+                ),
               ],
             );
           },
@@ -57,63 +118,4 @@ class ActiveTripsView extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildFilters(TripsCubit cubit, TripsState state) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10.h,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    AppStrings.sortBy,
-                    style: AppTextStyle.font14black600,
-                  ),
-                ),
-                IconButton(
-                    icon: const Icon(Icons.highlight_remove_outlined),
-                    onPressed: () {
-                      cubit.removeFilters();
-                    })
-              ],
-            ),
-            // Row(
-            //   spacing: 10.w,
-            //   children: [
-            //     Expanded(
-            //       child: DropdownButtonFormField<String>(
-            //         hint: const Text(AppStrings.startCity),
-            //         items: state.startCities
-            //             .map<DropdownMenuItem<String>>(
-            //                 (e) => DropdownMenuItem<String>(
-            //                       value: e,
-            //                       child: Text(e),
-            //                     ))
-            //             .toList(),
-            //         onChanged: (city) {
-            //           cubit.applyFilter(startCity: city);
-            //         },
-            //         value: state.startCity,
-            //       ),
-            //     ),
-            //     Expanded(
-            //       child: DropdownButtonFormField<String>(
-            //         hint: const Text(AppStrings.destenationCity),
-            //         items: state.startCities
-            //             .map<DropdownMenuItem<String>>(
-            //                 (e) => DropdownMenuItem<String>(
-            //                       value: e,
-            //                       child: Text(e),
-            //                     ))
-            //             .toList(),
-            //         onChanged: (city) {
-            //           cubit.applyFilter(destenationCity: city);
-            //         },
-            //         value: state.destinationCity,
-            //       ),
-            //     ),
-
-            //   ],
-            // ),
-          ]);
 }

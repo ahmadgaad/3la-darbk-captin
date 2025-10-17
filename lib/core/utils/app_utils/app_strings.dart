@@ -195,8 +195,18 @@ class AppStrings {
   static const String totalCreditOrders = 'إجمالي الشحنات المدفوعة بالائتمان';
   static const String appCommission = 'إجمالي عمولة التطبيق';
   static const String currentDues = 'مستحقاتك الحالية';
-  static const String percentCommission =  'نسبة العمولة';
+  static const String percentCommission = 'نسبة العمولة';
   static const String currentCommission = 'العموله الحالية';
+  static const String loadingTrips = 'جاري تحميل الرحلات...';
+  static const String errorLoadingTrips = 'حدث خطأ في تحميل الرحلات';
+  static const String retry = 'إعادة المحاولة';
+  static const String loadingOrders = 'جاري تحميل الشحنات...';
+  static const String errorLoadingOrders = 'حدث خطأ في تحميل الشحنات';
+  static const String loadingProfits = 'جاري تحميل بيانات الأرباح...';
+  static const String errorLoadingProfits = 'حدث خطأ في تحميل بيانات الأرباح';
+  static const String loadingNotifications = 'جاري تحميل الإشعارات...';
+  static const String errorLoadingNotifications = 'حدث خطأ في تحميل الإشعارات';
+  static const String noNotifications = 'لا توجد إشعارات';
   static const String totalEarnings = 'إجمالي الارباح';
 
   static const String deleteAccountTitle = 'حذف الحساب';

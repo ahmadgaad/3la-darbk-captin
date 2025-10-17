@@ -1,26 +1,24 @@
-
 import 'package:equatable/equatable.dart';
 
 import '../../repositories/model/order_model.dart';
-
-
 
 class OrdersState extends Equatable {
   final List<String> trips;
   final List<String> dates;
   final String? startCity;
   final String? destinationCity;
-  final List<MapEntry<int, String>> statuses ;
+  final List<MapEntry<int, String>> statuses;
   final String? date;
   final int? status;
   final bool loading;
   final String? error;
   final bool success;
-  final List<OrderModel>historyOrders;
-  final List<OrderModel>activeOrders;
+  final List<OrderModel> historyOrders;
+  final List<OrderModel> activeOrders;
+  final bool activeOrdersLoading;
+  final bool activeOrdersError;
 
-  const OrdersState(
-       {
+  const OrdersState({
     this.trips = const [],
     this.historyOrders = const [],
     this.activeOrders = const [],
@@ -33,6 +31,8 @@ class OrdersState extends Equatable {
     this.loading = false,
     this.success = false,
     this.error,
+    this.activeOrdersLoading = false,
+    this.activeOrdersError = false,
   });
 
   OrdersState copyWith({
@@ -40,7 +40,7 @@ class OrdersState extends Equatable {
     List<OrderModel>? historyOrders,
     List<OrderModel>? activeOrders,
     List<String>? dates,
-    List<MapEntry<int, String>>? statuses ,
+    List<MapEntry<int, String>>? statuses,
     String? startCity,
     String? destinationCity,
     int? status,
@@ -48,23 +48,27 @@ class OrdersState extends Equatable {
     bool? loading,
     bool? success,
     String? error,
+    bool? activeOrdersLoading,
+    bool? activeOrdersError,
   }) {
     return OrdersState(
       trips: trips ?? this.trips,
-       success: success ?? this.success,
+      success: success ?? this.success,
       historyOrders: historyOrders ?? this.historyOrders,
       activeOrders: activeOrders ?? this.activeOrders,
       dates: dates ?? this.dates,
       statuses: statuses ?? this.statuses,
-      startCity: startCity ,
+      startCity: startCity,
       status: status,
-      destinationCity: destinationCity ,
-      date: date ,
+      destinationCity: destinationCity,
+      date: date,
       loading: loading ?? this.loading,
       error: error ?? this.error,
+      activeOrdersLoading: activeOrdersLoading ?? this.activeOrdersLoading,
+      activeOrdersError: activeOrdersError ?? this.activeOrdersError,
     );
   }
-  
+
   @override
   List<Object?> get props => [
     trips,
@@ -78,6 +82,8 @@ class OrdersState extends Equatable {
     date,
     loading,
     activeOrders,
-    error
+    error,
+    activeOrdersLoading,
+    activeOrdersError,
   ];
 }

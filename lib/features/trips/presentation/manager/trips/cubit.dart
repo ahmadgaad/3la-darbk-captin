@@ -43,13 +43,20 @@ class TripsCubit extends Cubit<TripsState> {
   }
 
   getActiveTrips() async {
+    emit(state.copyWith(activeTripsLoading: true, activeTripsError: false));
     final result = await _tripsRepository.getActiveTrips();
     result.fold(
       (trips) {
-        emit(state.copyWith(activeTrips: trips, loading: false));
+        emit(
+          state.copyWith(
+            activeTrips: trips,
+            activeTripsLoading: false,
+            activeTripsError: false,
+          ),
+        );
       },
       (error) {
-        emit(state.copyWith(error: true, loading: false));
+        emit(state.copyWith(activeTripsError: true, activeTripsLoading: false));
       },
     );
   }

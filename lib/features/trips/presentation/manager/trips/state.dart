@@ -14,6 +14,8 @@ class TripsState extends Equatable {
   final List<OrderModel> orders;
   final bool loading;
   final bool error;
+  final bool activeTripsLoading;
+  final bool activeTripsError;
 
   const TripsState({
     this.trip,
@@ -24,7 +26,9 @@ class TripsState extends Equatable {
     this.destenationCity,
     this.date,
     this.loading = false,
-    this.error=false,
+    this.error = false,
+    this.activeTripsLoading = false,
+    this.activeTripsError = false,
   });
 
   TripsState copyWith({
@@ -37,9 +41,11 @@ class TripsState extends Equatable {
     String? date,
     bool? loading,
     bool? error,
+    bool? activeTripsLoading,
+    bool? activeTripsError,
   }) {
     return TripsState(
-      trip: trip??this.trip,
+      trip: trip ?? this.trip,
       trips: trips ?? this.trips,
       activeTrips: activeTrips ?? this.activeTrips,
       orders: orders ?? this.orders,
@@ -48,19 +54,23 @@ class TripsState extends Equatable {
       date: date,
       loading: loading ?? this.loading,
       error: error ?? this.error,
+      activeTripsLoading: activeTripsLoading ?? this.activeTripsLoading,
+      activeTripsError: activeTripsError ?? this.activeTripsError,
     );
   }
 
   @override
   List<Object?> get props => [
-        trip,
-        trips,
-        activeTrips,
-        startCity,
-        destenationCity,
-        orders,
-        date,
-        loading,
-        error,
-      ];
+    trip,
+    trips,
+    activeTrips,
+    startCity,
+    destenationCity,
+    orders,
+    date,
+    loading,
+    error,
+    activeTripsLoading,
+    activeTripsError,
+  ];
 }
