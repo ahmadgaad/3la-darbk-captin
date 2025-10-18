@@ -16,7 +16,7 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     int status = orderModel?.status ?? 0;
     return Stack(
-      alignment: Alignment.topLeft,
+      alignment: AlignmentDirectional.topEnd,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -106,9 +106,9 @@ class OrderItem extends StatelessWidget {
                     : status == 3
                     ? AppColors.delivered
                     : AppColors.canceled,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
+            borderRadius: const BorderRadiusDirectional.only(
+              topEnd: Radius.circular(10),
+              bottomStart: Radius.circular(10),
             ),
           ),
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.w),

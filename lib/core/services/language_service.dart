@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageService {
   static const String _languageKey = 'selected_language';
-  static const String _defaultLanguage = 'en';
+  static const String _defaultLanguage = 'ar';
 
   /// Get the saved language code from SharedPreferences
   static Future<String> getSavedLanguage() async {

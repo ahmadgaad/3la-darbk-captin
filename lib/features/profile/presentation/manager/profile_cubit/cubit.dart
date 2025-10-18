@@ -14,7 +14,7 @@ import 'state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepository _profileRepository;
   static const String _languageKey = 'selected_language';
-  static const String _defaultLanguage = 'en';
+  static const String _defaultLanguage = 'ar';
 
   ProfileCubit(this._profileRepository) : super(const ProfileState()) {
     _initializeLanguage();

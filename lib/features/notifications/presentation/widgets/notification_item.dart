@@ -4,29 +4,32 @@ import 'package:jiffy/jiffy.dart';
 
 import '../../repositories/model/notifications_model.dart';
 
-
 class NotificationItem extends StatelessWidget {
   final NotificationsModel? notifications;
   const NotificationItem({super.key, this.notifications});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       spacing: 8.h,
       children: [
-        if(notifications?.title!=null)
-
+        if (notifications?.title != null)
+          Align(
+            alignment: AlignmentDirectional.topStart,
+            child: Text(
+              notifications?.title ?? "",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        if (notifications?.body != null)
+          Align(
+            alignment: AlignmentDirectional.topStart,
+            child: Text(notifications?.body ?? ""),
+          ),
         Align(
-            alignment: Alignment.topRight,
-            child: Text(notifications?.title??"",style:  const TextStyle(fontWeight: FontWeight.bold),)),
-        if(notifications?.body!=null)
-
-        Align(
-            alignment: Alignment.topRight,
-            child: Text(notifications?.body??"")),
-        Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(Jiffy.parse((notifications?.createdAt??"")).yMd)),
+          alignment: AlignmentDirectional.bottomEnd,
+          child: Text(Jiffy.parse((notifications?.createdAt ?? "")).yMd),
+        ),
       ],
     );
   }

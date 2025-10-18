@@ -105,10 +105,9 @@ class ActiveOrdersView extends StatelessWidget {
                   ),
                   sliver: SliverList.separated(
                     itemBuilder:
-                        (BuildContext context, int index) =>
+                        (context, index) =>
                             OrderItem(orderModel: state.activeOrders[index]),
-                    separatorBuilder:
-                        (BuildContext context, int index) => 15.verticalSpace,
+                    separatorBuilder: (context, index) => 15.verticalSpace,
                     itemCount: state.activeOrders.length,
                   ),
                 ),
