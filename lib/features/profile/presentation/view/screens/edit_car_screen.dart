@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../../../core/widgets/app_image_view.dart';
-import '../../../auth/presentation/widgets/blate_alpha_field.dart';
-import '../../../auth/presentation/widgets/blate_number_field.dart';
-import '../../../auth/presentation/widgets/car_model_field.dart';
-import '../../../auth/presentation/widgets/car_type_field.dart';
-import '../../../auth/presentation/widgets/manufacture_year_field.dart';
-import '../manager/profile_cubit/cubit.dart';
-import '../manager/profile_cubit/state.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../../../../core/widgets/app_image_view.dart';
+import '../../../../auth/presentation/widgets/blate_alpha_field.dart';
+import '../../../../auth/presentation/widgets/blate_number_field.dart';
+import '../../../../auth/presentation/widgets/car_model_field.dart';
+import '../../../../auth/presentation/widgets/car_type_field.dart';
+import '../../../../auth/presentation/widgets/manufacture_year_field.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../../view_model/profile_cubit/state.dart';
 
 class EditCarScreen extends StatelessWidget {
   const EditCarScreen({super.key});

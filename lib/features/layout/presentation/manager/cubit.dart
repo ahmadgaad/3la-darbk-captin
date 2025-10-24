@@ -2,7 +2,7 @@ import 'package:ala_darbak_captain/features/layout/presentation/widgets/profile_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../profile/presentation/manager/profile_cubit/cubit.dart';
+import '../../../profile/presentation/view_model/profile_cubit/cubit.dart';
 import 'state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {

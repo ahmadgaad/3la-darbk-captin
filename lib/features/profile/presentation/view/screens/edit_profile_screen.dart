@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../../../core/widgets/app_image_view.dart';
-import '../../../auth/presentation/widgets/bank_name_field.dart';
-import '../../../auth/presentation/widgets/bank_number_field.dart';
-import '../../../auth/presentation/widgets/birthday_field.dart';
-import '../../../auth/presentation/widgets/id_number_field.dart';
-import '../../../auth/presentation/widgets/license_end_date_field.dart';
-import '../../../auth/presentation/widgets/name_field.dart';
-import '../../../auth/presentation/widgets/phone_number_field.dart';
-import '../manager/profile_cubit/cubit.dart';
-import '../manager/profile_cubit/state.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../../../../core/widgets/app_image_view.dart';
+import '../../../../auth/presentation/widgets/bank_name_field.dart';
+import '../../../../auth/presentation/widgets/bank_number_field.dart';
+import '../../../../auth/presentation/widgets/birthday_field.dart';
+import '../../../../auth/presentation/widgets/id_number_field.dart';
+import '../../../../auth/presentation/widgets/license_end_date_field.dart';
+import '../../../../auth/presentation/widgets/name_field.dart';
+import '../../../../auth/presentation/widgets/phone_number_field.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../../view_model/profile_cubit/state.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

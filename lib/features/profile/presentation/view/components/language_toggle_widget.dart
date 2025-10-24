@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../features/profile/presentation/manager/profile_cubit/cubit.dart';
-import '../../../../features/profile/presentation/manager/profile_cubit/state.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../../view_model/profile_cubit/state.dart';
 
 class LanguageToggleWidget extends StatelessWidget {
   const LanguageToggleWidget({super.key});

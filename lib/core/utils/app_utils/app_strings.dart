@@ -163,6 +163,10 @@ class AppStrings {
   static String get noNotifications => 'noNotifications'.tr();
   static String get totalEarnings => 'totalEarnings'.tr();
 
+  // General Error States
+  static String get somethingWentWrong => 'somethingWentWrong'.tr();
+  static String get tryAgainLater => 'tryAgainLater'.tr();
+
   // Account Management
   static String get deleteAccountTitle => 'deleteAccountTitle'.tr();
   static String get deleteAccountContent => 'deleteAccountContent'.tr();

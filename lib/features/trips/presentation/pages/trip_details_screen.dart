@@ -64,9 +64,13 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
                   child:
                       state.orders.isEmpty
                           ? ListView(
-                            padding: const EdgeInsets.all(20),
+                            physics: const AlwaysScrollableScrollPhysics(),
                             children: [
-                              Center(child: Text(AppStrings.noOrders)),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                child: Center(child: Text(AppStrings.noOrders)),
+                              ),
                             ],
                           )
                           : ListView.separated(

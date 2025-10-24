@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../manager/profile_cubit/cubit.dart';
-import '../manager/profile_cubit/state.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../../view_model/profile_cubit/state.dart';
 
 class Avaliability extends StatelessWidget {
   const Avaliability({super.key});

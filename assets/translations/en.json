@@ -137,6 +137,8 @@
   "errorLoadingNotifications": "Error loading notifications",
   "noNotifications": "No notifications",
   "totalEarnings": "Total Earnings",
+  "somethingWentWrong": "Something went wrong",
+  "tryAgainLater": "Please try again later",
   "deleteAccountTitle": "Delete Account",
   "deleteAccountContent": "Are you sure you want to permanently delete your account? All your data will be erased and this action cannot be undone.",
   "language": "Language",

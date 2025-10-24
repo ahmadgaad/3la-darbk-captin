@@ -10,8 +10,8 @@ import 'core/config/style/app_color.dart';
 import 'core/config/style/app_theme.dart';
 import 'core/db_injection.dart';
 import 'core/screens/splash_screen.dart';
-import 'features/profile/presentation/manager/profile_cubit/cubit.dart';
-import 'features/profile/presentation/manager/profile_cubit/state.dart';
+import 'features/profile/presentation/view_model/profile_cubit/cubit.dart';
+import 'features/profile/presentation/view_model/profile_cubit/state.dart';
 import 'features/trips/presentation/manager/cities/cubit.dart';
 
 class AlaDarbkCaptainApp extends StatelessWidget {

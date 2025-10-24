@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/config/style/app_text_styles.dart';
-import '../../../../core/widgets/app_image_view.dart';
-import '../manager/profile_cubit/cubit.dart';
-import '../manager/profile_cubit/state.dart';
+import '../../../../../core/config/style/app_text_styles.dart';
+import '../../../../../core/widgets/app_image_view.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../../view_model/profile_cubit/state.dart';
 
 class ProfileDetails extends StatelessWidget {
   const ProfileDetails({super.key});

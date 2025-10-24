@@ -5,16 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/config/routes/app_routes.dart';
-import '../../../../core/config/style/app_color.dart';
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../../setttings_info/presentation/manager/cubit.dart';
-import '../../../trips/presentation/manager/trips/cubit.dart';
-import '../manager/profile_cubit/cubit.dart';
-import '../widgets/avaliability.dart';
-import '../widgets/delete_account_dialog.dart';
-import '../widgets/language_toggle_widget.dart';
-import '../widgets/profile_details.dart';
+import '../../../../../core/config/routes/app_routes.dart';
+import '../../../../../core/config/style/app_color.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../../../setttings_info/presentation/manager/cubit.dart';
+import '../../../../trips/presentation/manager/trips/cubit.dart';
+import '../../view_model/profile_cubit/cubit.dart';
+import '../components/avaliability.dart';
+import '../components/delete_account_dialog.dart';
+import '../components/language_toggle_widget.dart';
+import '../components/profile_details.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -25,7 +25,11 @@ class ProfileView extends StatelessWidget {
         context.watch<ProfileCubit>().state.currentUser?.status != 0;
 
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text(AppStrings.profile)),
+      appBar: AppBar(
+        scrolledUnderElevation: 0.0,
+        centerTitle: true,
+        title: Text(AppStrings.profile),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           return await context.read<ProfileCubit>().getProfile();

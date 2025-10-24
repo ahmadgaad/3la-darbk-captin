@@ -9,9 +9,9 @@ import '../../../notifications/presentation/manager/notifications_cubit/cubit.da
 import '../../../notifications/presentation/manager/notifications_cubit/state.dart';
 import '../../../notifications/presentation/pages/notifications_view.dart';
 import '../../../orders/presentation/pages/active_orders_view.dart';
-import '../../../profile/presentation/manager/profile_cubit/cubit.dart';
-import '../../../profile/presentation/manager/profile_cubit/state.dart';
-import '../../../profile/presentation/pages/profile_view.dart';
+import '../../../profile/presentation/view_model/profile_cubit/cubit.dart';
+import '../../../profile/presentation/view_model/profile_cubit/state.dart';
+import '../../../profile/presentation/view/screens/profile_view.dart';
 import '../../../profits/presentation/pages/profits_view.dart';
 import '../../../trips/presentation/manager/trips/cubit.dart';
 import '../../../trips/presentation/pages/active_trips_view.dart';

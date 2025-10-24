@@ -30,11 +30,13 @@ class TripsCubit extends Cubit<TripsState> {
     emit(state.copyWith());
   }
 
-  getTrips() async {
+  Future<void> getTrips() async {
+    emit(state.copyWith(loading: true, error: false));
+    await Future.delayed(const Duration(seconds: 2));
     final result = await _tripsRepository.getTrips();
     result.fold(
       (trips) {
-        emit(state.copyWith(trips: trips, loading: false));
+        emit(state.copyWith(trips: trips, loading: false, error: false));
       },
       (error) {
         emit(state.copyWith(error: true, loading: false));
