@@ -1,8 +1,8 @@
 import 'package:ala_darbak_captain/features/orders/repositories/model/order_model.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../repositories/model/city_model.dart';
-import '../../../repositories/model/trip_model.dart';
+import '../../../data/model/city_model.dart';
+import '../../../data/model/trip_model.dart';
 
 class TripsState extends Equatable {
   final CityModel? startCity;

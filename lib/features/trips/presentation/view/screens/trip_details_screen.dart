@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../../core/config/style/app_text_styles.dart';
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../../orders/presentation/widgets/order_item.dart';
-import '../manager/trips/cubit.dart';
-import '../manager/trips/state.dart';
+import '../../../../../core/config/style/app_text_styles.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../../../orders/presentation/widgets/order_item.dart';
+import '../../view_model/trips/cubit.dart';
+import '../../view_model/trips/state.dart';
 
 class TripDetailsScreen extends StatefulWidget {
   final int tripId;

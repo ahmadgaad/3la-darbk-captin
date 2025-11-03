@@ -14,12 +14,12 @@ import '../../../features/profile/presentation/view/screens/edit_car_screen.dart
 import '../../../features/profile/presentation/view/screens/edit_profile_screen.dart';
 import '../../../features/profits/manager/cubit.dart';
 import '../../../features/setttings_info/presentation/pages/policy_screen.dart';
-import '../../../features/trips/presentation/manager/trips/cubit.dart';
-import '../../../features/trips/presentation/pages/create_trip_screen.dart';
+import '../../../features/trips/presentation/view_model/trips/cubit.dart';
+import '../../../features/trips/presentation/view/screens/create_trip_screen.dart';
 import '../../../features/layout/presentation/pages/layout_screen.dart';
 import '../../../features/order/presentation/pages/order_details_screen.dart';
-import '../../../features/trips/presentation/pages/trip_details_screen.dart';
-import '../../../features/trips/presentation/pages/trips_histpry_screen.dart';
+import '../../../features/trips/presentation/view/screens/trip_details_screen.dart';
+import '../../../features/trips/presentation/view/screens/trips_histpry_screen.dart';
 
 class AppRoute {
   static const String auth = "/auth";

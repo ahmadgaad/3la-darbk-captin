@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/data/exceptions/exceptions.dart';
-import '../../../core/data/remote/api_end_points.dart';
-import '../../../core/data/remote/api_client.dart';
-import '../../orders/repositories/model/order_model.dart';
-import 'model/city_model.dart';
-import 'model/trip_model.dart';
+import '../../../../core/data/exceptions/exceptions.dart';
+import '../../../../core/data/remote/api_end_points.dart';
+import '../../../../core/data/remote/api_client.dart';
+import '../../../orders/repositories/model/order_model.dart';
+import '../model/city_model.dart';
+import '../model/trip_model.dart';
 
 abstract class TripsRepository {
   Future<Either<List<CityModel>, AppException>> getCities();

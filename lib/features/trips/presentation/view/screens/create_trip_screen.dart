@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/config/style/app_text_styles.dart';
-import '../../../../core/db_injection.dart';
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../../repositories/model/city_model.dart';
-import '../manager/cities/cubit.dart';
-import '../manager/cities/state.dart';
-import '../manager/create_trip/cubit.dart';
-import '../manager/create_trip/state.dart';
-import '../widgets/trip_date_field.dart';
-import '../widgets/trip_time_field.dart';
+import '../../../../../core/config/style/app_text_styles.dart';
+import '../../../../../core/db_injection.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../../data/model/city_model.dart';
+import '../../view_model/cities/cubit.dart';
+import '../../view_model/cities/state.dart';
+import '../../view_model/create_trip/create_trip_cubit.dart';
+import '../../view_model/create_trip/create_trip_states.dart';
+import '../components/trip_date_field.dart';
+import '../components/trip_time_field.dart';
 
 class CreateTripScreen extends StatelessWidget {
   const CreateTripScreen({super.key});
@@ -46,7 +46,9 @@ class CreateTripScreen extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: cubit.creatTrip,
+                  onPressed: () {
+                    cubit.creatTrip();
+                  },
                   child:
                       state.loading
                           ? const Center(

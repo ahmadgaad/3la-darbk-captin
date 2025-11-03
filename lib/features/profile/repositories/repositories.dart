@@ -13,7 +13,7 @@ abstract class ProfileRepository {
     required String oldPassword,
     required String password,
   });
-  Future<Either<void, AppException>> logout();
+  Future<Either<AppException, Unit>> logout();
   Future<Either<void, AppException>> delete();
   Future<Either<UserModel, AppException>> getDriverData();
   Future<Either<UserModel, AppException>> updateData(UserModel user);
@@ -76,12 +76,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<void, AppException>> logout() async {
+  Future<Either<AppException, Unit>> logout() async {
     try {
+      await _apiClient.post(endPoint: ApiEndPoints.logout);
       await _sharedPreferences.removeToken();
-      return const Left(null);
+      return const Right(unit);
     } on AppException catch (e) {
-      return Right(e);
+      return Left(e);
     }
   }
 

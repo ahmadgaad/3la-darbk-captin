@@ -39,7 +39,7 @@ class LoginView extends StatelessWidget {
             const Logo(size: 100),
             25.verticalSpace,
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PhoneNumberField(
                   controller: loginCubit.phoneController,

@@ -37,12 +37,18 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  void logout() async {
+  Future<void> logout() async {
+    emit(state.copyWith(loading: true));
     final result = await _profileRepository.logout();
-    result.fold((l) {
-      AppRoute.pushNamedAndRemoveUntil(AppRoute.auth);
-      emit(state.copyWith(success: true, logedOut: true, loading: false));
-    }, (r) => emit(state.copyWith(loading: false, success: false)));
+    result.fold(
+      (error) {
+        emit(state.copyWith(loading: false, success: false));
+      },
+      (success) {
+        AppRoute.pushNamedAndRemoveUntil(AppRoute.auth);
+        emit(state.copyWith(success: true, logedOut: true, loading: false));
+      },
+    );
   }
 
   void delete() async {

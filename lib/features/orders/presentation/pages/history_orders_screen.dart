@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/config/style/app_text_styles.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../manager/cubit.dart';
 import '../manager/state.dart';
@@ -18,7 +17,6 @@ class HistoryOrdersScreen extends StatefulWidget {
 class _HistoryOrdersScreenState extends State<HistoryOrdersScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<OrdersCubit>().getHistoryOrders();
   }
@@ -33,25 +31,79 @@ class _HistoryOrdersScreenState extends State<HistoryOrdersScreen> {
         },
         child: BlocBuilder<OrdersCubit, OrdersState>(
           builder: (context, state) {
+            // Handle loading state
+            if (state.loading) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator.adaptive(),
+                    16.verticalSpace,
+                    Text(AppStrings.loadingOrders),
+                  ],
+                ),
+              );
+            }
+
+            // Handle error state
+            if (state.error != null && !state.success) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      AppStrings.errorLoadingOrders,
+                      style: const TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed:
+                          () => context.read<OrdersCubit>().getHistoryOrders(),
+                      child: Text(AppStrings.retry),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Handle empty state
+            if (state.historyOrders.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.history, size: 64, color: Colors.grey),
+                    const SizedBox(height: 16),
+                    Text(
+                      AppStrings.noOrders,
+                      style: const TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Handle success state with data
             return CustomScrollView(
               slivers: [
-                // SliverPadding(
-                //     padding:
-                //         EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-                //     sliver: SliverToBoxAdapter(
-                //         child:
-                //             _buildFilters(context.read<OrdersCubit>(), state))),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,
                     vertical: 24.h,
                   ),
                   sliver: SliverList.separated(
-                    itemBuilder:
-                        (BuildContext context, int index) =>
-                            OrderItem(orderModel: state.historyOrders[index]),
-                    separatorBuilder:
-                        (BuildContext context, int index) => 15.verticalSpace,
+                    itemBuilder: (context, index) {
+                      return OrderItem(orderModel: state.historyOrders[index]);
+                    },
+                    separatorBuilder: (context, index) => 15.verticalSpace,
                     itemCount: state.historyOrders.length,
                   ),
                 ),
@@ -62,78 +114,4 @@ class _HistoryOrdersScreenState extends State<HistoryOrdersScreen> {
       ),
     );
   }
-
-  Widget _buildFilters(OrdersCubit cubit, OrdersState state) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: 10.h,
-    children: [
-      Row(
-        children: [
-          Expanded(
-            child: Text(
-              AppStrings.filterBy,
-              style: AppTextStyle.font14black600,
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.highlight_remove_outlined),
-            onPressed: () {
-              cubit.removeFilters();
-            },
-          ),
-        ],
-      ),
-      // Row(
-      //   spacing: 10.w,
-      //   children: [
-      //     Expanded(
-      //       child: DropdownButtonFormField<String>(
-      //         hint: const Text(AppStrings.startCity),
-      //         items: state.startCities
-      //             .map<DropdownMenuItem<String>>(
-      //                 (e) => DropdownMenuItem<String>(
-      //                       value: e,
-      //                       child: Text(e),
-      //                     ))
-      //             .toList(),
-      //         onChanged: (city) {
-      //           cubit.applyFilter(startCity: city);
-      //         },
-      //         value: state.startCity,
-      //       ),
-      //     ),
-      //     Expanded(
-      //       child: DropdownButtonFormField<String>(
-      //         hint: const Text(AppStrings.destenationCity),
-      //         items: state.startCities
-      //             .map<DropdownMenuItem<String>>(
-      //                 (e) => DropdownMenuItem<String>(
-      //                       value: e,
-      //                       child: Text(e),
-      //                     ))
-      //             .toList(),
-      //         onChanged: (city) {
-      //           cubit.applyFilter(destenationCity: city);
-      //         },
-      //         value: state.destinationCity,
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      DropdownButtonFormField<int>(
-        hint: Text(AppStrings.status),
-        items:
-            state.statuses
-                .map<DropdownMenuItem<int>>(
-                  (e) =>
-                      DropdownMenuItem<int>(value: e.key, child: Text(e.value)),
-                )
-                .toList(),
-        onChanged: (status) {
-          cubit.applyFilter(status: status);
-        },
-        initialValue: state.status,
-      ),
-    ],
-  );
 }

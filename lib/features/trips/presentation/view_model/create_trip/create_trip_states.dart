@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import '../../../repositories/model/city_model.dart';
+import '../../../data/model/city_model.dart';
 
 class CreateTripState extends Equatable {
   final CityModel? startCity;

@@ -1,17 +1,20 @@
 import 'package:ala_darbak_captain/features/notifications/repositories/repositories.dart';
 import 'package:ala_darbak_captain/features/setttings_info/repositories/repositories.dart';
+import 'package:alice/alice.dart';
+import 'package:alice/model/alice_configuration.dart';
+import 'package:alice_dio/alice_dio_adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'config/app_config.dart';
 import '../features/auth/repositories/repositories.dart';
 import '../features/order/repositories/repositories.dart';
 import '../features/orders/repositories/repositories.dart';
 import '../features/profile/repositories/repositories.dart';
 import '../features/profits/data/repositories/repositories.dart';
-import '../features/trips/repositories/repositories.dart';
+import '../features/trips/data/repository/trips_repository.dart';
+import 'config/app_config.dart';
 import 'data/local/shared_preferences_service.dart';
 import 'data/remote/api_client.dart';
 import 'data/remote/interceptors/auth_interceptor.dart';
@@ -23,8 +26,13 @@ class DpInjection {
     ///Shared Preferences
     await _initSharedPref();
 
+    // Alice alice = Alice(
+    //   configuration: AliceConfiguration(showNotification: true),
+    // );
+    // sl.registerSingleton<Alice>(alice);
+
     ///Api Client
-    _apiClientInit();
+    _apiClientInit( );
 
     ///Repositories
     _authRepoInit();
@@ -45,6 +53,9 @@ class DpInjection {
   }
 
   static void _apiClientInit() {
+    // Create and configure Alice Dio adapter
+    // final aliceDioAdapter = AliceDioAdapter();
+    // alice.addAdapter(aliceDioAdapter);
     sl.registerSingleton<Dio>(
       Dio(
           BaseOptions(
@@ -70,6 +81,7 @@ class DpInjection {
             compact: true,
             maxWidth: 90,
           ),
+          // aliceDioAdapter,
         ]),
     );
 

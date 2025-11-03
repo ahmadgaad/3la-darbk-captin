@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_utils/app_strings.dart';
-import '../manager/trips/cubit.dart';
-import '../manager/trips/state.dart';
-import '../widgets/trip_item.dart';
+import '../../../../../core/utils/app_utils/app_strings.dart';
+import '../../view_model/trips/cubit.dart';
+import '../../view_model/trips/state.dart';
+import '../components/trip_item.dart';
 
 class ActiveTripsView extends StatelessWidget {
   const ActiveTripsView({super.key});

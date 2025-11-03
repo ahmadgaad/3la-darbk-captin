@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/temp/app_temp.dart';
+import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../repositories/repositories.dart';
 import 'state.dart';
 
@@ -27,6 +27,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   getHistoryOrders() async {
+    emit(state.copyWith(loading: true, error: null, success: false));
     final result = await _ordersRepository.getHistoryOrders();
     result.fold(
       (l) {

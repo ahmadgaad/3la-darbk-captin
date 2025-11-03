@@ -1,4 +1,5 @@
 import 'package:ala_darbak_captain/features/setttings_info/presentation/manager/cubit.dart';
+import 'package:alice/alice.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ import 'core/db_injection.dart';
 import 'core/screens/splash_screen.dart';
 import 'features/profile/presentation/view_model/profile_cubit/cubit.dart';
 import 'features/profile/presentation/view_model/profile_cubit/state.dart';
-import 'features/trips/presentation/manager/cities/cubit.dart';
+import 'features/trips/presentation/view_model/cities/cubit.dart';
 
 class AlaDarbkCaptainApp extends StatelessWidget {
   const AlaDarbkCaptainApp({super.key});
@@ -49,6 +50,7 @@ class AlaDarbkCaptainApp extends StatelessWidget {
                     color: AppColors.backGround,
                     home: const SplashScreen(),
                     navigatorKey: AppRoute.navigatorKey,
+                    // navigatorKey: sl<Alice>().getNavigatorKey(),
                     onGenerateRoute: AppRoute.generateRoute,
                     localizationsDelegates: context.localizationDelegates,
                     supportedLocales: context.supportedLocales,

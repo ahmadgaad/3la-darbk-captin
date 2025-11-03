@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../repositories/model/city_model.dart';
-import '../../../repositories/model/trip_model.dart';
-import '../../../repositories/repositories.dart';
+import '../../../data/model/city_model.dart';
+import '../../../data/model/trip_model.dart';
+import '../../../data/repository/trips_repository.dart';
 import 'state.dart';
 
 class TripsCubit extends Cubit<TripsState> {
