@@ -1,18 +1,18 @@
 class CityModel {
   final int id;
   final String name;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final String latitude;
-  final String longitude;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String? latitude;
+  final String? longitude;
 
   CityModel({
     required this.id,
     required this.name,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.latitude,
-    required this.longitude,
+    this.createdAt,
+    this.updatedAt,
+    this.latitude,
+    this.longitude,
   });
 
   CityModel copyWith({
@@ -34,11 +34,17 @@ class CityModel {
   factory CityModel.fromJson(Map<String, dynamic> json) {
     return CityModel(
       id: json["id"],
-      name: json["name"],
-      createdAt: DateTime.parse(json["created_at"]),
-      updatedAt: DateTime.parse(json["updated_at"]),
-      latitude: json["latitude"],
-      longitude: json["longitude"],
+      name: json["name"] ?? "",
+      createdAt:
+          json["created_at"] == null
+              ? null
+              : DateTime.parse(json["created_at"]),
+      updatedAt:
+          json["updated_at"] == null
+              ? null
+              : DateTime.parse(json["updated_at"]),
+      latitude: json["latitude"]?.toString(),
+      longitude: json["longitude"]?.toString(),
     );
   }
 }

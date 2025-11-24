@@ -71,53 +71,54 @@ class CreateTripScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTripLine(
-    CreateTripCubit cubit,
-    CreateTripState state,
-  ) => BlocBuilder<CitiesCubit, CitiesState>(
-    builder: (context, citiesState) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(AppStrings.chooseTripLine, style: AppTextStyle.font14black600),
-          15.verticalSpace,
-          DropdownButtonFormField<CityModel>(
-            hint: Text(AppStrings.startCity),
-            items:
-                citiesState.cities
-                    .map<DropdownMenuItem<CityModel>>(
-                      (e) => DropdownMenuItem<CityModel>(
-                        value: e,
-                        child: Text(e.name ?? ""),
-                      ),
-                    )
-                    .toList(),
-            onChanged: (city) {
-              cubit.selectCities(startCity: city);
-            },
-            initialValue: state.startCity,
-          ),
-          15.verticalSpace,
-          DropdownButtonFormField<CityModel>(
-            hint: Text(AppStrings.destenationCity),
-            items:
-                citiesState.cities
-                    .map<DropdownMenuItem<CityModel>>(
-                      (e) => DropdownMenuItem<CityModel>(
-                        value: e,
-                        child: Text(e.name ?? ""),
-                      ),
-                    )
-                    .toList(),
-            onChanged: (city) {
-              cubit.selectCities(destenationCity: city);
-            },
-            initialValue: state.destinationCity,
-          ),
-        ],
+  Widget _buildTripLine(CreateTripCubit cubit, CreateTripState state) =>
+      BlocBuilder<CitiesCubit, CitiesState>(
+        builder: (context, citiesState) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppStrings.chooseTripLine,
+                style: AppTextStyle.font14black600,
+              ),
+              15.verticalSpace,
+              DropdownButtonFormField<CityModel>(
+                hint: Text(AppStrings.startCity),
+                items:
+                    citiesState.cities
+                        .map<DropdownMenuItem<CityModel>>(
+                          (e) => DropdownMenuItem<CityModel>(
+                            value: e,
+                            child: Text(e.name),
+                          ),
+                        )
+                        .toList(),
+                onChanged: (city) {
+                  cubit.selectCities(startCity: city);
+                },
+                initialValue: state.startCity,
+              ),
+              15.verticalSpace,
+              DropdownButtonFormField<CityModel>(
+                hint: Text(AppStrings.destenationCity),
+                items:
+                    citiesState.cities
+                        .map<DropdownMenuItem<CityModel>>(
+                          (e) => DropdownMenuItem<CityModel>(
+                            value: e,
+                            child: Text(e.name),
+                          ),
+                        )
+                        .toList(),
+                onChanged: (city) {
+                  cubit.selectCities(destenationCity: city);
+                },
+                initialValue: state.destinationCity,
+              ),
+            ],
+          );
+        },
       );
-    },
-  );
   Widget _buildTripDate(CreateTripCubit cubit, CreateTripState state) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

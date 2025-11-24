@@ -87,11 +87,6 @@ class ActiveTripsView extends StatelessWidget {
             // Handle success state with data
             return CustomScrollView(
               slivers: [
-                // SliverPadding(
-                //     padding:
-                //         EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-                //     sliver:
-                //         SliverToBoxAdapter(child: _buildFilters(context.read<TripsCubit>(), state))),
                 SliverPadding(
                   padding: EdgeInsets.only(
                     left: 20.w,
@@ -101,10 +96,9 @@ class ActiveTripsView extends StatelessWidget {
                   ),
                   sliver: SliverList.separated(
                     itemBuilder:
-                        (BuildContext context, int index) =>
+                        (context, index) =>
                             TripItem(tripModel: state.activeTrips[index]),
-                    separatorBuilder:
-                        (BuildContext context, int index) => 15.verticalSpace,
+                    separatorBuilder: (context, index) => 15.verticalSpace,
                     itemCount: state.activeTrips.length,
                   ),
                 ),
