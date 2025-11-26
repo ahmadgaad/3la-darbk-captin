@@ -1,3 +1,4 @@
+import 'package:ala_darbak_captain/core/config/style/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_utils/app_strings.dart';
@@ -12,6 +13,7 @@ class NameField extends StatelessWidget {
     return TextFormField(
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       controller: controller,
+      style: AppTextStyle.font16black500,
       validator: ValidationForm.nameValidator,
       keyboardType: TextInputType.name,
       autovalidateMode: AutovalidateMode.onUserInteraction,

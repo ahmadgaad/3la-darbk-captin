@@ -24,6 +24,7 @@ class PhoneNumberField extends StatelessWidget {
         LengthLimitingTextInputFormatter(9),
         SaudiNumberFormatter(),
       ],
+      style: AppTextStyle.font16black500,
       textDirection: TextDirection.ltr,
       decoration: InputDecoration(
         suffixIcon: Padding(

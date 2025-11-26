@@ -1,3 +1,4 @@
+import 'package:ala_darbak_captain/core/config/style/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_utils/app_strings.dart';
@@ -26,6 +27,7 @@ class _PasswordFieldState extends State<PasswordField> {
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       controller: widget.controller,
       obscureText: !isVisible,
+      style: AppTextStyle.font16black500,
       validator: widget.validator ?? ValidationForm.passwordValidator,
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
