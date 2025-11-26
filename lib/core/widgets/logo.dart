@@ -8,7 +8,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      "assets/images/splash_back.png",
+      "assets/images/updated_splash.png",
       width: size.w,
       height: size.h,
     );

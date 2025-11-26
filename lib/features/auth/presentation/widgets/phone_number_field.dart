@@ -14,14 +14,17 @@ class PhoneNumberField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
       controller: controller,
       validator: validator,
       keyboardType: TextInputType.phone,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(9),
         SaudiNumberFormatter(),
       ],
+      textDirection: TextDirection.ltr,
       decoration: InputDecoration(
         suffixIcon: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),

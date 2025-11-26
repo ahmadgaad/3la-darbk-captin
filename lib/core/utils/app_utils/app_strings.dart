@@ -181,6 +181,7 @@ class AppStrings {
   static String get phoneNumberNotValid => 'phoneNumberNotValid'.tr();
   static String get pleaseEnterPassword => 'pleaseEnterPassword'.tr();
   static String get passwordNotValid => 'passwordNotValid'.tr();
+  static String get passwordNotValidDescription => 'passwordNotValidDescription'.tr();
   static String get passwordNotMatch => 'passwordNotMatch'.tr();
   static String get pleaseEnterName => 'pleaseEnterName'.tr();
   static String get pleaseEnterBankName => 'pleaseEnterBankName'.tr();

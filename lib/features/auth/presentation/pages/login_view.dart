@@ -53,7 +53,17 @@ class LoginView extends StatelessWidget {
                   },
                 ),
                 25.verticalSpace,
-                PasswordField(controller: loginCubit.passwordController),
+                PasswordField(
+                  controller: loginCubit.passwordController,
+                  validator: (password) {
+                    if (password == null || password.isEmpty) {
+                      return AppStrings.pleaseEnterPassword;
+                    } else if (!RegexHelper.isPasswordValid(password)) {
+                      return AppStrings.passwordNotValidDescription;
+                    }
+                    return null;
+                  },
+                ),
                 10.verticalSpace,
                 TextButton(
                   onPressed: () {

@@ -148,6 +148,7 @@
   "phoneNumberNotValid": "Phone number is not valid",
   "pleaseEnterPassword": "Please enter password",
   "passwordNotValid": "Password is not valid",
+  "passwordNotValidDescription": "Please enter a valid password",
   "passwordNotMatch": "Passwords do not match",
   "pleaseEnterName": "Please enter name",
   "pleaseEnterBankName": "Please enter bank name",

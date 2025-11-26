@@ -10,12 +10,14 @@ class NameField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
       controller: controller,
       validator: ValidationForm.nameValidator,
       keyboardType: TextInputType.name,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: AppStrings.name,
-        prefixIcon: Icon(Icons.person, size: 25),
+        prefixIcon: const Icon(Icons.person, size: 25),
       ),
     );
   }

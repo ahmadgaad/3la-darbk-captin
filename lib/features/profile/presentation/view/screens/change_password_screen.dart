@@ -1,3 +1,4 @@
+import 'package:ala_darbak_captain/core/utils/heplers/regex_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,14 @@ class ChangePasswordScreen extends StatelessWidget {
                         PasswordField(
                           controller: cubit.oldPasswordController,
                           hintText: AppStrings.oldPassword,
+                          validator: (password) {
+                            if (password == null || password.isEmpty) {
+                              return AppStrings.pleaseEnterPassword;
+                            } else if (!RegexHelper.isPasswordValid(password)) {
+                              return AppStrings.passwordNotValidDescription;
+                            }
+                            return null;
+                          },
                         ),
                         PasswordField(controller: cubit.passwordController),
                         ConfirmPasswordField(
