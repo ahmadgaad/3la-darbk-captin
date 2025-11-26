@@ -33,7 +33,7 @@ class ProfileView extends StatelessWidget {
           centerTitle: true,
           title: Text(AppStrings.profile),
         ),
-        body: RefreshIndicator(
+        body: RefreshIndicator.adaptive(
           onRefresh: () async {
             return await context.read<ProfileCubit>().getProfile();
           },

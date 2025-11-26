@@ -14,7 +14,11 @@ class ActiveTripsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<TripsCubit>();
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text(AppStrings.activeTrips)),
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        centerTitle: true,
+        title: Text(AppStrings.activeTrips),
+      ),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {
           return await cubit.getActiveTrips();
@@ -23,64 +27,88 @@ class ActiveTripsView extends StatelessWidget {
           builder: (context, state) {
             // Handle loading state
             if (state.activeTripsLoading) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator.adaptive(),
-                    16.verticalSpace,
-                    Text(AppStrings.loadingTrips),
-                  ],
-                ),
+              return CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const CircularProgressIndicator.adaptive(),
+                          16.verticalSpace,
+                          Text(AppStrings.loadingTrips),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               );
             }
 
             // Handle error state
             if (state.activeTripsError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.error_outline,
-                      size: 64,
-                      color: Colors.red,
+              return CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.error_outline,
+                            size: 64,
+                            color: Colors.red,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            AppStrings.errorLoadingTrips,
+                            style: const TextStyle(fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => cubit.getActiveTrips(),
+                            child: Text(AppStrings.retry),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      AppStrings.errorLoadingTrips,
-                      style: const TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => cubit.getActiveTrips(),
-                      child: Text(AppStrings.retry),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               );
             }
 
             // Handle empty state
             if (state.activeTrips.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.directions_car_outlined,
-                      size: 64,
-                      color: Colors.grey,
+              return CustomScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.directions_car_outlined,
+                            size: 64,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            AppStrings.noTrips,
+                            style: const TextStyle(fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      AppStrings.noTrips,
-                      style: const TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               );
             }
 

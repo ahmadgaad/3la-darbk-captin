@@ -14,10 +14,11 @@ class ActiveOrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         centerTitle: true,
         title: Text(AppStrings.availiableOrders),
       ),
-      body: RefreshIndicator(
+      body: RefreshIndicator.adaptive(
         onRefresh: () async {
           return await context.read<OrdersCubit>().getActiveOrders();
         },
@@ -25,77 +26,109 @@ class ActiveOrdersView extends StatelessWidget {
           builder: (context, state) {
             // Handle loading state
             if (state.activeOrdersLoading) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator.adaptive(),
-                    16.verticalSpace,
-                    Text(AppStrings.loadingOrders),
-                  ],
-                ),
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const CircularProgressIndicator.adaptive(),
+                            16.verticalSpace,
+                            Text(AppStrings.loadingOrders),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               );
             }
 
             // Handle error state
             if (state.activeOrdersError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.error_outline,
-                      size: 64,
-                      color: Colors.red,
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.error_outline,
+                              size: 64,
+                              color: Colors.red,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              AppStrings.errorLoadingOrders,
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 16),
+                            ElevatedButton(
+                              onPressed: () {
+                                context.read<OrdersCubit>().getActiveOrders();
+                              },
+                              child: Text(AppStrings.retry),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      AppStrings.errorLoadingOrders,
-                      style: const TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed:
-                          () => context.read<OrdersCubit>().getActiveOrders(),
-                      child: Text(AppStrings.retry),
-                    ),
-                  ],
-                ),
+                  );
+                },
               );
             }
 
             // Handle empty state
             if (state.activeOrders.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.local_shipping_outlined,
-                      size: 64,
-                      color: Colors.grey,
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.local_shipping_outlined,
+                              size: 64,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              AppStrings.noOrders,
+                              style: const TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      AppStrings.noOrders,
-                      style: const TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+                  );
+                },
               );
             }
 
             // Handle success state with data
             return CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-                // SliverPadding(
-                //     padding:
-                //         EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-                //     sliver: SliverToBoxAdapter(
-                //         child:
-                //             _buildFilters(context.read<OrdersCubit>(), state))),
                 SliverPadding(
                   padding: EdgeInsets.only(
                     left: 20.w,

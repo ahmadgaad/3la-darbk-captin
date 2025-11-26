@@ -25,13 +25,6 @@ class ProfitsView extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Text(AppStrings.myProfit),
-            // bottom: const TabBar(
-            //   tabs: [
-            //     Tab(text: AppStrings.payAppProfit),
-            //     // Tab(text: AppStrings.profitHistory),
-            //     Tab(text: AppStrings.profitDetails),
-            //   ],
-            // ),
           ),
           body: const ProfitDetailsView(),
           bottomNavigationBar: Padding(

@@ -20,7 +20,7 @@ class ProfitDetailsView extends StatelessWidget {
     final percentCommission =
         settingCubit.state.settingsInfo?.percentCommission;
 
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       onRefresh: () async {
         await cubit.getCommission();
         return;
