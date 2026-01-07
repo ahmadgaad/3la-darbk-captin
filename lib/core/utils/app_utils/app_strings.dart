@@ -37,6 +37,10 @@ class AppStrings {
   static String get end => 'end'.tr();
   static String get updatedSuccessfully => 'updatedSuccessfully'.tr();
   static String get carImage => 'carImage'.tr();
+  static String get idCardImage => 'idCardImage'.tr();
+  static String get carLicenseImage => 'carLicenseImage'.tr();
+  static String get imageIdCardRequired => 'imageIdCardRequired'.tr();
+  static String get imageCarLicenseRequired => 'imageCarLicenseRequired'.tr();
   static String get address => 'address'.tr();
   static String get pleaseEnterAddress => 'pleaseEnterAddress'.tr();
   static String get registerSuccess => 'registerSuccess'.tr();

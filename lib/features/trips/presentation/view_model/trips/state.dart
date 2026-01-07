@@ -16,6 +16,8 @@ class TripsState extends Equatable {
   final bool error;
   final bool activeTripsLoading;
   final bool activeTripsError;
+  final bool ordersLoading;
+  final bool ordersError;
 
   const TripsState({
     this.trip,
@@ -29,6 +31,8 @@ class TripsState extends Equatable {
     this.error = false,
     this.activeTripsLoading = false,
     this.activeTripsError = false,
+    this.ordersLoading = false,
+    this.ordersError = false,
   });
 
   TripsState copyWith({
@@ -43,6 +47,8 @@ class TripsState extends Equatable {
     bool? error,
     bool? activeTripsLoading,
     bool? activeTripsError,
+    bool? ordersLoading,
+    bool? ordersError,
   }) {
     return TripsState(
       trip: trip ?? this.trip,
@@ -56,6 +62,8 @@ class TripsState extends Equatable {
       error: error ?? this.error,
       activeTripsLoading: activeTripsLoading ?? this.activeTripsLoading,
       activeTripsError: activeTripsError ?? this.activeTripsError,
+      ordersLoading: ordersLoading ?? this.ordersLoading,
+      ordersError: ordersError ?? this.ordersError,
     );
   }
 
@@ -72,5 +80,7 @@ class TripsState extends Equatable {
     error,
     activeTripsLoading,
     activeTripsError,
+    ordersLoading,
+    ordersError,
   ];
 }

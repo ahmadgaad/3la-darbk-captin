@@ -15,7 +15,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterCubit(this._authRepository) : super(const RegisterState());
 
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
@@ -40,6 +39,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   bool isPrivacyPolicyAccepted = false;
   File? image;
   File? imageCar;
+  File? imageIdCard;
+  File? imageCarLicense;
+
   pickImage() async {
     image = await ImagePickerUtils.getImage();
     emit(state.copyWith());
@@ -47,6 +49,16 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   pickCarImage() async {
     imageCar = await ImagePickerUtils.getImage();
+    emit(state.copyWith());
+  }
+
+  pickIdCardImage() async {
+    imageIdCard = await ImagePickerUtils.getImage();
+    emit(state.copyWith());
+  }
+
+  pickCarLicenseImage() async {
+    imageCarLicense = await ImagePickerUtils.getImage();
     emit(state.copyWith());
   }
 
@@ -59,8 +71,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (state.step == 0 && !(formKey.currentState?.validate() ?? false)) {
       return;
     }
-    if (state.step == 1 && (!(formKey2.currentState?.validate() ?? false)||image==null)) {
-      if(image==null){
+    if (state.step == 1 &&
+        (!(formKey2.currentState?.validate() ?? false) || image == null)) {
+      if (image == null) {
         AppToaster.show(AppStrings.imageRequired);
       }
       return;
@@ -83,27 +96,32 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   void checkUser() async {
-    if(formKey.currentState?.validate() ?? false)
-   { emit(state.copyWith(loading: true));
-    final result = await _authRepository.checkUserExists(
-      mobile: phoneController.text,
-    );
-    result.fold((userExist) {
-      if (userExist) {
-        AppToaster.show(AppStrings.userExist);
-        emit(state.copyWith(loading: false, userExist: userExist));
-      } else {
-        emit(state.copyWith(loading: false, userExist: userExist, step: 1));
-      }
-    }, (r) => emit(state.copyWith(loading: false, success: false)));}
+    if (formKey.currentState?.validate() ?? false) {
+      emit(state.copyWith(loading: true));
+      final result = await _authRepository.checkUserExists(
+        mobile: phoneController.text,
+      );
+      result.fold((userExist) {
+        if (userExist) {
+          AppToaster.show(AppStrings.userExist);
+          emit(state.copyWith(loading: false, userExist: userExist));
+        } else {
+          emit(state.copyWith(loading: false, userExist: userExist, step: 1));
+        }
+      }, (r) => emit(state.copyWith(loading: false, success: false)));
+    }
   }
 
   void register() async {
-    if (formKey3.currentState!.validate() && isPrivacyPolicyAccepted
-    &&imageCar!=null) {
+    if (formKey3.currentState!.validate() &&
+        isPrivacyPolicyAccepted &&
+        imageCar != null &&
+        imageIdCard != null &&
+        imageCarLicense != null) {
       emit(state.copyWith(loading: true));
 
-      final result = await _authRepository.register(UserModel.register(
+      final result = await _authRepository.register(
+        UserModel.register(
           imageFile: image,
           name: nameController.text,
           password: passwordController.text,
@@ -119,15 +137,24 @@ class RegisterCubit extends Cubit<RegisterState> {
           yearManufacture: manufactureYearController.text,
           platesNumber: blateNumberController.text,
           platesString: blateAlphaController.text,
-          imageCarFile: imageCar));
-      result.fold((l) => emit(state.copyWith(success: true, loading: false)),
-          (r) => emit(state.copyWith(loading: false)));
+          imageCarFiles: [imageCar!, imageIdCard!, imageCarLicense!],
+        ),
+      );
+      result.fold(
+        (l) => emit(state.copyWith(success: true, loading: false)),
+        (r) => emit(state.copyWith(loading: false)),
+      );
     } else if (!isPrivacyPolicyAccepted) {
       AppToaster.show(AppStrings.acceptPrivacyPolicy);
-    }else if(imageCar==null){
+    } else if (imageCar == null) {
       AppToaster.show(AppStrings.imageCarRequired);
+    } else if (imageIdCard == null) {
+      AppToaster.show(AppStrings.imageIdCardRequired);
+    } else if (imageCarLicense == null) {
+      AppToaster.show(AppStrings.imageCarLicenseRequired);
     }
   }
+
   @override
   Future<void> close() {
     phoneController.dispose();

@@ -18,10 +18,6 @@ class TripDetailsScreen extends StatefulWidget {
 }
 
 class _TripDetailsScreenState extends State<TripDetailsScreen> {
-  int? _previousTripId;
-  bool _ordersLoaded = false;
-  DateTime? _tripLoadedTime;
-
   @override
   void initState() {
     super.initState();
@@ -35,28 +31,7 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
         final cubit = context.read<TripsCubit>();
         final status = state.trip?.status ?? 0;
         final isLoadingTrip = state.trip == null && !state.error;
-
-        // Track if orders are loading (trip just loaded but orders not yet fetched)
-        final currentTripId = state.trip?.id;
-        if (currentTripId != null && currentTripId != _previousTripId) {
-          _previousTripId = currentTripId;
-          _ordersLoaded = false;
-          _tripLoadedTime = DateTime.now();
-        }
-        if (state.orders.isNotEmpty) {
-          _ordersLoaded = true;
-        }
-        // If trip loaded more than 2 seconds ago and orders are still empty, assume they're actually empty
-        if (_tripLoadedTime != null &&
-            DateTime.now().difference(_tripLoadedTime!).inSeconds > 2 &&
-            state.orders.isEmpty) {
-          _ordersLoaded = true;
-        }
-        final isLoadingOrders =
-            state.trip != null &&
-            !_ordersLoaded &&
-            state.orders.isEmpty &&
-            !state.error;
+        final isLoadingOrders = state.ordersLoading;
 
         return Scaffold(
           appBar: AppBar(
@@ -176,8 +151,6 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
     // Handle success state with trip data
     return RefreshIndicator(
       onRefresh: () async {
-        _ordersLoaded = false;
-        _tripLoadedTime = null;
         return await cubit.getTrip(widget.tripId);
       },
       child: _buildOrdersList(state, isLoadingOrders),

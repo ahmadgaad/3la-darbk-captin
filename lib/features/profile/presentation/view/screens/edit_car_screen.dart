@@ -38,7 +38,7 @@ class EditCarScreen extends StatelessWidget {
                       children: [
                         AppImageView(
                           shape: BoxShape.circle,
-                          url: state.currentUser?.imageCar ?? "no-image",
+                          url: state.currentUser?.imageCar?.firstOrNull,
                           file: cubit.imageCar,
                           width: 80.w,
                           height: 80.h,

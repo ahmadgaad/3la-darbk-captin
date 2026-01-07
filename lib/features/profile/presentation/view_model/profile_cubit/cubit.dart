@@ -132,7 +132,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         yearManufacture: manufactureYearController.text,
         platesNumber: blateNumberController.text,
         platesString: blateAlphaController.text,
-        imageCarFile: imageCar,
+        imageCarFiles: imageCar != null ? [imageCar!] : null,
       ),
     );
     result.fold((value) {

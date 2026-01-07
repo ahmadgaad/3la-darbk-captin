@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../../../core/utils/app_utils/app_strings.dart';
 import '../../../../core/utils/heplers/validation_form.dart';
 
@@ -11,7 +12,8 @@ class BlateNumberField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: ValidationForm.blateNumberValidator,
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: InputDecoration(
         hintText: AppStrings.blateNumber,
         // prefixIcon: Icon(FontAwesomeIcons.idCard, size: 25),

@@ -68,16 +68,19 @@ class TripsCubit extends Cubit<TripsState> {
   }
 
   getTrip(int tripId) async {
+    emit(state.copyWith(ordersLoading: true, ordersError: false));
     final result = await _tripsRepository.getTrip(tripId: tripId);
     result.fold(
       (trip) {
         emit(state.copyWith(trip: trip, loading: false));
       },
       (error) {
-        emit(state.copyWith(error: true, loading: false));
+        emit(state.copyWith(error: true, loading: false, ordersLoading: false));
       },
     );
-    getTripOrders(tripId);
+    if (!state.error) {
+      getTripOrders(tripId);
+    }
   }
 
   updateTrip(int status) async {
@@ -101,10 +104,16 @@ class TripsCubit extends Cubit<TripsState> {
     final result = await _tripsRepository.getTripOrders(tripId);
     result.fold(
       (orders) {
-        emit(state.copyWith(orders: orders, loading: false));
+        emit(
+          state.copyWith(
+            orders: orders,
+            ordersLoading: false,
+            ordersError: false,
+          ),
+        );
       },
       (error) {
-        emit(state.copyWith(error: true, loading: false));
+        emit(state.copyWith(ordersError: true, ordersLoading: false));
       },
     );
   }

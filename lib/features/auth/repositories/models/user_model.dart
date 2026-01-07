@@ -1,9 +1,8 @@
 import 'dart:io';
 
-
 import '../../../../core/utils/heplers/file_utils.dart';
 
-class UserModel  {
+class UserModel {
   final int? id;
   final String? image;
   final String? password;
@@ -21,8 +20,8 @@ class UserModel  {
   final String? yearManufacture;
   final String? platesNumber;
   final String? platesString;
-  final String? imageCar;
-  final File? imageCarFile;
+  final List<String>? imageCar;
+  final List<File>? imageCarFiles;
   final int? status;
   final int? workValid;
   final int? canEdit;
@@ -50,7 +49,7 @@ class UserModel  {
     this.platesNumber,
     this.platesString,
     this.imageCar,
-    this.imageCarFile,
+    this.imageCarFiles,
     this.status,
     this.createdAt,
     this.updatedAt,
@@ -76,7 +75,7 @@ class UserModel  {
     required this.platesNumber,
     required this.platesString,
     this.imageCar,
-    required this.imageCarFile,
+    required this.imageCarFiles,
     this.status,
     this.createdAt,
     this.updatedAt,
@@ -98,88 +97,92 @@ class UserModel  {
     String? yearManufacture,
     String? platesNumber,
     String? platesString,
-    String? imageCar,
-    File? imageCarFile,
+    List<String>? imageCar,
+    List<File>? imageCarFiles,
     int? status,
     int? workValid,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) =>
-      UserModel(
-        id: id ?? this.id,
-        workValid: workValid ?? this.workValid,
-        image: image ?? this.image,
-        name: name ?? this.name,
-        imageFile: imageFile ?? this.imageFile,
-        mobile: mobile ?? this.mobile,
-        address: address ?? this.address,
-        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
-        nationalNumber: nationalNumber ?? this.nationalNumber,
-        licenseExpiration: licenseExpiration ?? this.licenseExpiration,
-        nameBank: nameBank ?? this.nameBank,
-        bankAccountNumber: bankAccountNumber ?? this.bankAccountNumber,
-        typeCar: typeCar ?? this.typeCar,
-        categoryCar: categoryCar ?? this.categoryCar,
-        yearManufacture: yearManufacture ?? this.yearManufacture,
-        platesNumber: platesNumber ?? this.platesNumber,
-        platesString: platesString ?? this.platesString,
-        imageCar: imageCar ?? this.imageCar,
-        imageCarFile: imageCarFile ?? this.imageCarFile,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-      );
+  }) => UserModel(
+    id: id ?? this.id,
+    workValid: workValid ?? this.workValid,
+    image: image ?? this.image,
+    name: name ?? this.name,
+    imageFile: imageFile ?? this.imageFile,
+    mobile: mobile ?? this.mobile,
+    address: address ?? this.address,
+    dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+    nationalNumber: nationalNumber ?? this.nationalNumber,
+    licenseExpiration: licenseExpiration ?? this.licenseExpiration,
+    nameBank: nameBank ?? this.nameBank,
+    bankAccountNumber: bankAccountNumber ?? this.bankAccountNumber,
+    typeCar: typeCar ?? this.typeCar,
+    categoryCar: categoryCar ?? this.categoryCar,
+    yearManufacture: yearManufacture ?? this.yearManufacture,
+    platesNumber: platesNumber ?? this.platesNumber,
+    platesString: platesString ?? this.platesString,
+    imageCar: imageCar ?? this.imageCar,
+    imageCarFiles: imageCarFiles ?? this.imageCarFiles,
+    status: status ?? this.status,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        id: json["id"],
-        image: json["image"],
-        name: json["name"],
-        mobile: json["mobile"],
-        address: json["address"],
-        dateOfBirth: json["date_of_birth"],
-        nationalNumber: json["national_number"],
-        licenseExpiration: json["license_expiration"],
-        nameBank: json["name_bank"],
-        bankAccountNumber: json["bank_account_number"],
-        typeCar: json["type_car"],
-        categoryCar: json["category_car"],
-        yearManufacture: json["year_manufacture"],
-        platesNumber: json["plates_number"],
-        platesString: json["plates_string"],
-        imageCar: json["image_car"],
-        status: json["status"],
-        canEdit: json["can_edit"],
-        workValid: json["work_valid"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
-      );
+    id: json["id"],
+    image: json["image"],
+    name: json["name"],
+    mobile: json["mobile"],
+    address: json["address"],
+    dateOfBirth: json["date_of_birth"],
+    nationalNumber: json["national_number"],
+    licenseExpiration: json["license_expiration"],
+    nameBank: json["name_bank"],
+    bankAccountNumber: json["bank_account_number"],
+    typeCar: json["type_car"],
+    categoryCar: json["category_car"],
+    yearManufacture: json["year_manufacture"],
+    platesNumber: json["plates_number"],
+    platesString: json["plates_string"],
+    imageCar: _parseImageCar(json["image_car"]),
+    status: json["status"],
+    canEdit: json["can_edit"],
+    workValid: json["work_valid"],
+    createdAt:
+        json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    updatedAt:
+        json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        if (id != null) "id": id,
-        if (imageFile != null)
-          "image":FileUtils.getMultiPartFile(imageFile),
-        if (name != null) "name": name,
-        if (mobile != null) "mobile": mobile,
-        if (address != null) "address": address,
-        if (dateOfBirth != null) "date_of_birth": dateOfBirth,
-        if (nationalNumber != null) "national_number": nationalNumber,
-        if (licenseExpiration != null) "license_expiration": licenseExpiration,
-        if (nameBank != null) "name_bank": nameBank,
-        if (bankAccountNumber != null) "bank_account_number": bankAccountNumber,
-        if (typeCar != null) "type_car": typeCar,
-        if (categoryCar != null) "category_car": categoryCar,
-        if (yearManufacture != null) "year_manufacture": yearManufacture,
-        if (platesNumber != null) "plates_number": platesNumber,
-        if (platesString != null) "plates_string": platesString,
-        if (password != null) 'password': password,
-        if (imageCarFile != null)
-          "image_car":  FileUtils.getMultiPartFile(imageCarFile),
-        if (workValid != null) "work_valid": workValid,
-      };
+    if (id != null) "id": id,
+    if (imageFile != null) "image": FileUtils.getMultiPartFile(imageFile),
+    if (name != null) "name": name,
+    if (mobile != null) "mobile": mobile,
+    if (address != null) "address": address,
+    if (dateOfBirth != null) "date_of_birth": dateOfBirth,
+    if (nationalNumber != null) "national_number": nationalNumber,
+    if (licenseExpiration != null) "license_expiration": licenseExpiration,
+    if (nameBank != null) "name_bank": nameBank,
+    if (bankAccountNumber != null) "bank_account_number": bankAccountNumber,
+    if (typeCar != null) "type_car": typeCar,
+    if (categoryCar != null) "category_car": categoryCar,
+    if (yearManufacture != null) "year_manufacture": yearManufacture,
+    if (platesNumber != null) "plates_number": platesNumber,
+    if (platesString != null) "plates_string": platesString,
+    if (password != null) 'password': password,
+    if (imageCarFiles != null && imageCarFiles!.isNotEmpty)
+      "image_car[]":
+          imageCarFiles!
+              .map((file) => FileUtils.getMultiPartFile(file))
+              .toList(),
+    if (workValid != null) "work_valid": workValid,
+  };
 
- 
+  static List<String>? _parseImageCar(dynamic value) {
+    if (value == null) return null;
+    if (value is String) return [value];
+    if (value is List) return List<String>.from(value);
+    return null;
+  }
 }
